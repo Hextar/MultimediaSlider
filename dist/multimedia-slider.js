@@ -1,12 +1,11 @@
 /*** **************** ***/
 /*** gallery.js ***** ***/
 /*** **************** ***/
-
 (function () {
     'use strict';
 
     angular
-        .module('ion-gallery', [templates])
+        .module('angular-multimediaslider')
         .directive('ionGallery', ionGallery);
 
     ionGallery.$inject = ['$ionicPlatform', 'ionGalleryHelper', 'ionGalleryConfig'];
@@ -58,19 +57,20 @@
     }
 })();
 
+
 /*** **************** ***/
 /*** galleryConfig.js ***/
 /*** **************** ***/
-(function(){
+(function () {
     'use strict';
 
     angular
-        .module('ion-gallery')
-        .provider('ionGalleryConfig',ionGalleryConfig);
+        .module('angular-multimediaslider')
+        .provider('ionGalleryConfig', ionGalleryConfig);
 
     ionGalleryConfig.$inject = [];
 
-    function ionGalleryConfig(){
+    function ionGalleryConfig() {
         this.config = {
             action_label: 'Close',
             toggle: true,
@@ -78,11 +78,11 @@
             fixed_row_size: true
         };
 
-        this.$get = function() {
+        this.$get = function () {
             return this.config;
         };
 
-        this.setGalleryConfig = function(config) {
+        this.setGalleryConfig = function (config) {
             angular.extend(this.config, this.config, config);
         };
     }
@@ -96,7 +96,7 @@
     'use strict';
 
     angular
-        .module('ion-gallery')
+        .module('angular-multimediaslider')
         .service('ionGalleryHelper', ionGalleryHelper);
 
     ionGalleryHelper.$inject = ['ionGalleryConfig'];
@@ -164,48 +164,49 @@
     }
 })();
 
+
 /*** ************* ***/
 /*** imageScale.js ***/
 /*** ************* ***/
-(function(){
+(function () {
     'use strict';
 
     angular
-        .module('ion-gallery')
-        .directive('ionImageScale',ionImageScale);
+        .module('angular-multimediaslider')
+        .directive('ionImageScale', ionImageScale);
 
     ionImageScale.$inject = [];
 
-    function ionImageScale(){
+    function ionImageScale() {
 
         return {
             restrict: 'A',
-            link : link
+            link: link
         };
 
         function link(scope, element, attrs) {
 
-            var scaleImage = function(context,value) {
-                if(value>0){
-                    if(context.naturalHeight >= context.naturalWidth){
-                        element.attr('width','100%');
+            var scaleImage = function (context, value) {
+                if (value > 0) {
+                    if (context.naturalHeight >= context.naturalWidth) {
+                        element.attr('width', '100%');
                     }
-                    else{
-                        element.attr('height',element.parent()[0].offsetHeight+'px');
+                    else {
+                        element.attr('height', element.parent()[0].offsetHeight + 'px');
                     }
                 }
             };
 
-            element.bind("load" , function(e){
+            element.bind("load", function (e) {
                 var _this = this;
-                if(element.parent()[0].offsetHeight > 0){
-                    scaleImage(this,element.parent()[0].offsetHeight);
+                if (element.parent()[0].offsetHeight > 0) {
+                    scaleImage(this, element.parent()[0].offsetHeight);
                 }
 
-                scope.$watch(function(){
+                scope.$watch(function () {
                     return element.parent()[0].offsetHeight;
-                },function(newValue){
-                    scaleImage(_this,newValue);
+                }, function (newValue) {
+                    scaleImage(_this, newValue);
                 });
             });
         }
@@ -215,30 +216,30 @@
 /*** ************ ***/
 /*** rowHeight.js ***/
 /*** ************ ***/
-(function(){
+(function () {
     'use strict';
 
     angular
-        .module('ion-gallery')
-        .directive('ionRowHeight',ionRowHeight);
+        .module('angular-multimediaslider')
+        .directive('ionRowHeight', ionRowHeight);
 
     ionRowHeight.$inject = ['ionGalleryConfig'];
 
-    function ionRowHeight(ionGalleryConfig){
+    function ionRowHeight(ionGalleryConfig) {
 
         return {
             restrict: 'A',
-            link : link
+            link: link
         };
 
         function link(scope, element, attrs) {
             scope.$watch(
-                function(){
+                function () {
                     return scope.ionGalleryRowSize;
                 },
-                function(newValue,oldValue){
-                    if(newValue > 0){
-                        element.css('height',element[0].offsetWidth * parseInt(scope.responsiveGrid)/100 + 'px');
+                function (newValue, oldValue) {
+                    if (newValue > 0) {
+                        element.css('height', element[0].offsetWidth * parseInt(scope.responsiveGrid) / 100 + 'px');
                     }
                 });
         }
@@ -248,27 +249,27 @@
 /*** ************** ***/
 /*** slideAction.js ***/
 /*** ************** ***/
-(function(){
+(function () {
     'use strict';
 
     angular
-        .module('ion-gallery')
-        .directive('ionSlideAction',ionSlideAction);
+        .module('angular-multimediaslider')
+        .directive('ionSlideAction', ionSlideAction);
 
-    ionSlideAction.$inject = ['$ionicGesture','$timeout'];
+    ionSlideAction.$inject = ['$ionicGesture', '$timeout'];
 
-    function ionSlideAction($ionicGesture, $timeout){
+    function ionSlideAction($ionicGesture, $timeout) {
 
         return {
             restrict: 'A',
-            link : link
+            link: link
         };
 
         function link(scope, element, attrs) {
 
             var isDoubleTapAction = false;
 
-            var pinchZoom = function pinchZoom(){
+            var pinchZoom = function pinchZoom() {
                 scope.$emit('ZoomStarted');
             };
 
@@ -276,34 +277,39 @@
 
                 isDoubleTapAction = true;
 
-                $timeout(function(){
+                $timeout(function () {
                     isDoubleTapAction = false;
-                    scope.$emit('DoubleTapEvent',{ 'x': event.gesture.touches[0].pageX, 'y': event.gesture.touches[0].pageY});
-                },200);
+                    scope.$emit('DoubleTapEvent', {
+                        'x': event.gesture.touches[0].pageX,
+                        'y': event.gesture.touches[0].pageY
+                    });
+                }, 200);
             };
 
             var imageTapGesture = function imageTapGesture(event) {
 
-                if(isDoubleTapAction === true){
+                if (isDoubleTapAction === true) {
                     return;
                 }
-                else{
-                    $timeout(function(){
-                        if(isDoubleTapAction === true){
+                else {
+                    $timeout(function () {
+                        if (isDoubleTapAction === true) {
                             return;
                         }
-                        else{
+                        else {
                             scope.$emit('TapEvent');
                         }
-                    },200);
+                    }, 200);
                 }
             };
 
-            var pinchEvent = $ionicGesture.on('pinch',pinchZoom,element);
-            var doubleTapEvent = $ionicGesture.on('doubletap', function(e){imageDoubleTapGesture(e);}, element);
+            var pinchEvent = $ionicGesture.on('pinch', pinchZoom, element);
+            var doubleTapEvent = $ionicGesture.on('doubletap', function (e) {
+                imageDoubleTapGesture(e);
+            }, element);
             var tapEvent = $ionicGesture.on('tap', imageTapGesture, element);
 
-            scope.$on('$destroy', function() {
+            scope.$on('$destroy', function () {
                 $ionicGesture.off(doubleTapEvent, 'doubletap', imageDoubleTapGesture);
                 $ionicGesture.off(tapEvent, 'tap', imageTapGesture);
                 $ionicGesture.off(pinchEvent, 'pinch', pinchZoom);
@@ -319,7 +325,7 @@
     'use strict';
 
     angular
-        .module('ion-gallery')
+        .module('angular-multimediaslider')
         .directive('ionSlider', ionSlider);
 
     ionSlider.$inject = ['$ionicModal', 'ionGalleryHelper', '$ionicPlatform', '$timeout', '$ionicScrollDelegate'];
@@ -352,7 +358,7 @@
                     tempPlayer = player;
                     players[index] = tempPlayer;
 
-                    console.debug("found player id: "+player.id);
+                    console.debug("found player id: " + player.id);
                 });
                 console.debug("Player now contains: ");
                 console.debug(players);
@@ -397,7 +403,7 @@
                 lastSlideIndex = 1;
                 $scope.loadModal();
 
-                console.debug("=========== "+ lastSlideIndex +" ===========");
+                console.debug("=========== " + lastSlideIndex + " ===========");
                 $scope.refreshPlayers(lastSlideIndex);
                 //$scope.startVideo(lastSlideIndex);
             };
@@ -444,8 +450,8 @@
 
                 $scope.slides[slideToLoad] = $scope.ionGalleryItems[imageToLoad];
 
-                console.debug("=========== "+ imageToLoad +" ===========");
-                if($scope.ionGalleryItems[imageToLoad].hasOwnProperty('video')) {
+                console.debug("=========== " + imageToLoad + " ===========");
+                if ($scope.ionGalleryItems[imageToLoad].hasOwnProperty('video')) {
                     $scope.refreshPlayers(imageToLoad);
                 }
                 $scope.stopVideo(lastSlideIndex);
@@ -551,6 +557,7 @@
     }
 })();
 
+
 /*** ******************** ***/
 /*** youtube-directive.js ***/
 /*** ******************** ***/
@@ -558,10 +565,10 @@
     'use strict';
 
     angular
-        .module('youtube-embed', [])
-        .directive('youtubeEmbedUtils', youtubeDirective);
+        .module('angular-multimediaslider' )
+        .directive('youtubeEmbed', youtubeDirective);
 
-    youtubeDirective.$inject = ['$window', 'youtubeEmbedUtils'];
+    youtubeDirective.$inject = ['$window', 'youtubeService'];
 
     function youtubeDirective($window, youtubeEmbedUtils) {
         var uniqId = 1;
@@ -715,6 +722,7 @@
 
 })();
 
+
 /*** ****************** ***/
 /*** youtube-service.js ***/
 /*** ****************** ***/
@@ -722,8 +730,8 @@
     'use strict';
 
     angular
-        .module('youtube-embed', [])
-        .service('youtubeEmbedUtils', youtubeEmbedService);
+        .module('angular-multimediaslider' )
+        .service('youtubeService', youtubeEmbedService);
 
     youtubeEmbedService.$inject = ['$window', '$rootScope'];
 

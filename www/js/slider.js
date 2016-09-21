@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('ion-gallery')
+        .module('angular-multimediaslider')
         .directive('ionSlider', ionSlider);
 
     ionSlider.$inject = ['$ionicModal', 'ionGalleryHelper', '$ionicPlatform', '$timeout', '$ionicScrollDelegate'];
@@ -35,7 +35,7 @@
                     tempPlayer = player;
                     players[index] = tempPlayer;
 
-                    console.debug("found player id: "+player.id);
+                    console.debug("found player id: " + player.id);
                 });
                 console.debug("Player now contains: ");
                 console.debug(players);
@@ -80,7 +80,7 @@
                 lastSlideIndex = 1;
                 $scope.loadModal();
 
-                console.debug("=========== "+ lastSlideIndex +" ===========");
+                console.debug("=========== " + lastSlideIndex + " ===========");
                 $scope.refreshPlayers(lastSlideIndex);
                 //$scope.startVideo(lastSlideIndex);
             };
@@ -127,8 +127,8 @@
 
                 $scope.slides[slideToLoad] = $scope.ionGalleryItems[imageToLoad];
 
-                console.debug("=========== "+ imageToLoad +" ===========");
-                if($scope.ionGalleryItems[imageToLoad].hasOwnProperty('video')) {
+                console.debug("=========== " + imageToLoad + " ===========");
+                if ($scope.ionGalleryItems[imageToLoad].hasOwnProperty('video')) {
                     $scope.refreshPlayers(imageToLoad);
                 }
                 $scope.stopVideo(lastSlideIndex);

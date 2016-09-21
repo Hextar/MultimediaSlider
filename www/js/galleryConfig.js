@@ -1,27 +1,27 @@
-(function(){
-  'use strict';
+(function () {
+    'use strict';
 
-  angular
-    .module('ion-gallery')
-    .provider('ionGalleryConfig',ionGalleryConfig);
+    angular
+        .module('angular-multimediaslider')
+        .provider('ionGalleryConfig', ionGalleryConfig);
 
-  ionGalleryConfig.$inject = [];
+    ionGalleryConfig.$inject = [];
 
-  function ionGalleryConfig(){
-    this.config = {
-      action_label: 'Close',
-      toggle: true,
-      row_size: 3,
-      fixed_row_size: true
-    };
+    function ionGalleryConfig() {
+        this.config = {
+            action_label: 'Close',
+            toggle: true,
+            row_size: 3,
+            fixed_row_size: true
+        };
 
-    this.$get = function() {
-        return this.config;
-    };
+        this.$get = function () {
+            return this.config;
+        };
 
-    this.setGalleryConfig = function(config) {
-        angular.extend(this.config, this.config, config);
-    };
-  }
+        this.setGalleryConfig = function (config) {
+            angular.extend(this.config, this.config, config);
+        };
+    }
 
 })();

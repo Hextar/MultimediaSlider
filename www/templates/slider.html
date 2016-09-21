@@ -20,8 +20,8 @@
                     <div class="item item-image gallery-slide-view">
                         <img ng-src="{{single.src}}" ng-show="single.src!=''">
                         <div class="embed-responsive embed-responsive-16by9" ng-show="single.video!=''">
-                            <youtube-video player-uid="single.videoUid" video-url="single.video" player-vars="{controls: 1, autoplay: 0}"
-                                           class="embed-responsive-item"></youtube-video>
+                            <youtube-embed player-uid="single.videoUid" video-url="single.video" player-vars="{controls: 1, autoplay: 0}"
+                                           class="embed-responsive-item"></youtube-embed>
                         </div>
                     </div>
                     <div ng-if="single.sub.length > 0" style="width: 100%; left: 0" class="text-center image-subtitle"

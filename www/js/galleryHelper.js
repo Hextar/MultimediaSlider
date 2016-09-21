@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('ion-gallery')
+        .module('angular-multimediaslider')
         .service('ionGalleryHelper', ionGalleryHelper);
 
     ionGalleryHelper.$inject = ['ionGalleryConfig'];

@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('ion-gallery', [])
+        .module('angular-multimediaslider')
         .directive('ionGallery', ionGallery);
 
     ionGallery.$inject = ['$ionicPlatform', 'ionGalleryHelper', 'ionGalleryConfig'];

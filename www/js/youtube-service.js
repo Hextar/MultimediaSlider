@@ -2,8 +2,8 @@
     'use strict';
 
     angular
-        .module('youtube-embed', [])
-        .service('youtubeEmbedUtils', youtubeEmbedService);
+        .module('angular-multimediaslider' )
+        .service('youtubeService', youtubeEmbedService);
 
     youtubeEmbedService.$inject = ['$window', '$rootScope'];
 

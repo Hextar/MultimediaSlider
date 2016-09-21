@@ -2,10 +2,10 @@
     'use strict';
 
     angular
-        .module('youtube-embed', [])
-        .directive('youtubeEmbedUtils', youtubeDirective);
+        .module('angular-multimediaslider' )
+        .directive('youtubeEmbed', youtubeDirective);
 
-    youtubeDirective.$inject = ['$window', 'youtubeEmbedUtils'];
+    youtubeDirective.$inject = ['$window', 'youtubeService'];
 
     function youtubeDirective($window, youtubeEmbedUtils) {
         var uniqId = 1;
