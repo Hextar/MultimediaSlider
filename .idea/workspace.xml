@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="76cc70f5-f583-4985-8434-693454e62f0e" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/index.html" afterPath="$PROJECT_DIR$/www/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/app.js" afterPath="$PROJECT_DIR$/www/js/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/controllers.js" afterPath="$PROJECT_DIR$/www/js/controllers.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/multimedia-slider.js" afterPath="$PROJECT_DIR$/dist/multimedia-slider.js" />
     </list>
     <ignored path="MultimediaSlider.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -47,12 +44,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="youtube-directive.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="youtube-directive.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/js/youtube-directive.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="336">
               <caret line="16" column="20" selection-start-line="16" selection-start-column="20" selection-end-line="16" selection-end-column="20" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="multimedia-slider.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/dist/multimedia-slider.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="323">
+              <caret line="729" column="32" selection-start-line="729" selection-start-column="32" selection-end-line="729" selection-end-column="32" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -100,12 +109,12 @@
         <option value="$PROJECT_DIR$/www/js/gallery.js" />
         <option value="$PROJECT_DIR$/www/js/angular-youtube-directive.js" />
         <option value="$PROJECT_DIR$/www/js/angular-youtube-embed.js" />
-        <option value="$PROJECT_DIR$/dist/multimedia-slider.js" />
         <option value="$PROJECT_DIR$/www/js/app.js" />
         <option value="$PROJECT_DIR$/www/index.html" />
         <option value="$PROJECT_DIR$/www/js/controllers.js" />
         <option value="$PROJECT_DIR$/www/js/youtube-service.js" />
         <option value="$PROJECT_DIR$/www/js/youtube-directive.js" />
+        <option value="$PROJECT_DIR$/dist/multimedia-slider.js" />
       </list>
     </option>
   </component>
@@ -803,16 +812,16 @@
       <option name="presentableId" value="Default" />
       <updated>1474386385239</updated>
       <workItem from="1474386406955" duration="199000" />
-      <workItem from="1474443614398" duration="13207000" />
+      <workItem from="1474443614398" duration="13322000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="13406000" />
+    <option name="totallyTimeSpent" value="13521000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="81" y="-5" width="1839" height="1085" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1034,16 +1043,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dist/multimedia-slider.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="8" column="17" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="28" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/www/js/gallery.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1134">
@@ -1137,6 +1136,16 @@
         <state relative-caret-position="336">
           <caret line="16" column="20" selection-start-line="16" selection-start-column="20" selection-end-line="16" selection-end-column="20" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dist/multimedia-slider.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="729" column="32" selection-start-line="729" selection-start-column="32" selection-end-line="729" selection-end-column="32" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

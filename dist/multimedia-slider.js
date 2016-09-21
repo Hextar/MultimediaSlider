@@ -727,7 +727,7 @@
 
     youtubeEmbedService.$inject = ['$window', '$rootScope'];
 
-    function youtubeEmbed($window, $rootScope) {
+    function youtubeEmbedService($window, $rootScope) {
 
         var Service = {}
 
