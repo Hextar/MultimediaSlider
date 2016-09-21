@@ -5,7 +5,7 @@
     'use strict';
 
     angular
-        .module('angular-multimediaslider')
+        .module('angular-multimediaslider', ['templates'])
         .directive('ionGallery', ionGallery);
 
     ionGallery.$inject = ['$ionicPlatform', 'ionGalleryHelper', 'ionGalleryConfig'];
@@ -72,7 +72,7 @@
 
     function ionGalleryConfig() {
         this.config = {
-            action_label: 'Close',
+            action_label: 'Chiudi',
             toggle: true,
             row_size: 3,
             fixed_row_size: true
