@@ -1,28 +1,41 @@
-angular.module('starter.controllers', [])
+angular.module('multimediaslider')
 
-.controller('DashCtrl', function($scope) {})
+    .controller('Home', function ($scope) {
 
-.controller('ChatsCtrl', function($scope, Chats) {
-  // With the new view caching in Ionic, Controllers are only called
-  // when they are recreated or on app start, instead of every page change.
-  // To listen for when this page is active (for example, to refresh data),
-  // listen for the $ionicView.enter event:
-  //
-  //$scope.$on('$ionicView.enter', function(e) {
-  //});
+        $scope.items = [
+            {
+                src: 'http://placehold.it/800x900',
+                sub: 'This is <b>SAMPLE 1</b>',
+                thumb: 'http://placehold.it/100x100'
+            },
+            {
+                videoUid: '1',
+                video: 'CjgnyPGAgp8',
+                sub: 'This is <b>SAMPLE 2</b>',
+                thumb: 'http://placehold.it/100x100'
+            },
+            {
+                videoUid: '2',
+                video: '_JS_RFCQZtc',
+                sub: 'This is <b>SAMPLE 3</b>',
+                thumb: 'http://placehold.it/100x100'
+            },
+            {
+                src: 'http://placehold.it/300x200',
+                sub: 'This is <b>SAMPLE 4</b>',
+                thumb: 'http://placehold.it/100x100'
+            },
+            {
+                videoUid: '3',
+                video: 'u36IGHpWUgg',
+                sub: 'This is a <b>SAMPLE 5</b>',
+                thumb: 'http://placehold.it/100x100'
+            },
+            {
+                src: 'http://placehold.it/400x400',
+                sub: 'This is <b>SAMPLE 6</b>',
+                thumb: 'http://placehold.it/100x100'
+            }
+        ];
 
-  $scope.chats = Chats.all();
-  $scope.remove = function(chat) {
-    Chats.remove(chat);
-  };
-})
-
-.controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
-  $scope.chat = Chats.get($stateParams.chatId);
-})
-
-.controller('AccountCtrl', function($scope) {
-  $scope.settings = {
-    enableFriends: true
-  };
-});
+    });
