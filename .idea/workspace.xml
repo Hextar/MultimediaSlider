@@ -47,13 +47,23 @@
       <file leaf-file-name="multimedia-slider.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/dist/multimedia-slider.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="147">
-              <caret line="7" column="57" selection-start-line="7" selection-start-column="57" selection-end-line="7" selection-end-column="57" />
+            <state relative-caret-position="407">
+              <caret line="849" column="0" selection-start-line="849" selection-start-column="0" selection-end-line="849" selection-end-column="0" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
-                <marker date="1474472942386" expanded="true" signature="28300:28320" ph="..." />
-                <marker date="1474472942386" expanded="true" signature="28396:28410" ph="..." />
+                <marker date="1474473989094" expanded="true" signature="28320:28340" ph="..." />
+                <marker date="1474473989094" expanded="true" signature="28416:28430" ph="..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="galleryConfig.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/www/js/galleryConfig.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="113">
+              <caret line="11" column="34" selection-start-line="11" selection-start-column="34" selection-end-line="11" selection-end-column="34" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -798,12 +808,12 @@
       <option name="presentableId" value="Default" />
       <updated>1474386385239</updated>
       <workItem from="1474386406955" duration="199000" />
-      <workItem from="1474443614398" duration="18487000" />
+      <workItem from="1474443614398" duration="19442000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="18686000" />
+    <option name="totallyTimeSpent" value="19641000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="81" y="-5" width="1839" height="1085" extended-state="6" />
@@ -1061,14 +1071,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/js/galleryConfig.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="11" column="34" selection-start-line="0" selection-start-column="0" selection-end-line="26" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/www/js/galleryHelper.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="252">
@@ -1141,14 +1143,22 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/www/js/galleryConfig.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="113">
+          <caret line="11" column="34" selection-start-line="11" selection-start-column="34" selection-end-line="11" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/dist/multimedia-slider.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="7" column="57" selection-start-line="7" selection-start-column="57" selection-end-line="7" selection-end-column="57" />
+        <state relative-caret-position="407">
+          <caret line="849" column="0" selection-start-line="849" selection-start-column="0" selection-end-line="849" selection-end-column="0" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
-            <marker date="1474472942386" expanded="true" signature="28300:28320" ph="..." />
-            <marker date="1474472942386" expanded="true" signature="28396:28410" ph="..." />
+            <marker date="1474473989094" expanded="true" signature="28320:28340" ph="..." />
+            <marker date="1474473989094" expanded="true" signature="28416:28430" ph="..." />
           </folding>
         </state>
       </provider>
