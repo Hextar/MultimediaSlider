@@ -1,6 +1,6 @@
 // Ionic Starter App
 
-angular.module('multimediaslider', ['ionic', 'ion-gallery', 'youtube-embed' ])
+angular.module('angular-multimediaslider', ['ionic', 'ion-gallery', 'youtube-embed' ])
 
     .run(function ($ionicPlatform) {
         $ionicPlatform.ready(function () {

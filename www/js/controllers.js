@@ -1,4 +1,4 @@
-angular.module('multimediaslider')
+angular.module('angular-multimediaslider')
 
     .controller('Home', function ($scope) {
 
