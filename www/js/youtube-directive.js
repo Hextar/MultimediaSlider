@@ -2,13 +2,12 @@
     'use strict';
 
     angular
-        .module('angular-multimediaslider' )
+        .module('angular-multimediaslider')
         .directive('youtubeEmbed', youtubeDirective);
 
     youtubeDirective.$inject = ['$window', 'youtubeService'];
 
     function youtubeDirective($window, youtubeEmbedUtils) {
-        var uniqId = 1;
 
         // from YT.PlayerState
         var stateNames = {
@@ -29,7 +28,6 @@
         return {
             restrict: 'EA',
             scope: {
-                playerUid: '=?',
                 videoId: '=?',
                 videoUrl: '=?',
                 player: '=?',
@@ -42,8 +40,11 @@
                 scope.utils = youtubeEmbedUtils;
 
                 // player-id attr > id attr > directive-generated ID
-                var playerId = attrs.playerId || element[0].id || 'unique-youtube-embed-id-' + scope.playerUid;
+
+                var playerId = attrs.playerId || element[0].id || "youtube-embed-uid-" + scope.videoId;
                 element[0].id = playerId;
+
+                console.debug("uid is " + playerId);
 
                 // Attach to element
                 scope.playerHeight = scope.playerHeight || 390;
@@ -91,11 +92,12 @@
                         }
                     });
 
-                    //player.id = playerId;
+                    player.id = playerId;
                     return player;
                 }
 
                 function loadPlayer() {
+
                     if (scope.videoId || scope.playerVars.list) {
                         if (scope.player && typeof scope.player.destroy === 'function') {
                             scope.player.destroy();
@@ -122,7 +124,6 @@
                                 scope.$watch('videoUrl', function (url) {
                                     scope.videoId = scope.utils.getIdFromURL(url);
                                     scope.urlStartTime = scope.utils.getTimeFromURL(url);
-
                                     loadPlayer();
                                 });
 

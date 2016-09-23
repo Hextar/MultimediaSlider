@@ -8,6 +8,9 @@
     ionSlider.$inject = ['$ionicModal', 'ionGalleryHelper', '$ionicPlatform', '$timeout', '$ionicScrollDelegate'];
 
     var players = [];
+    var AUTO_REFRESH = false;
+    var AUTO_START= false;
+    var AUTO_STOP= true;
 
     function ionSlider($ionicModal, ionGalleryHelper, $ionicPlatform, $timeout, $ionicScrollDelegate) {
 
@@ -17,47 +20,53 @@
             link: link
         };
 
-        var tempPlayer = 0;
-
-        function controller($scope) {
+        function controller($scope, $sce) {
             var lastSlideIndex;
             var currentImage;
             var galleryLength = $scope.ionGalleryItems.length;
 
-            var rowSize = $scope.ionGalleryRowSize;
             var zoomStart = false;
 
             players = Array.apply(null, new Array(galleryLength)).map(Number.prototype.valueOf, 0);
 
-            $scope.refreshPlayers = function (index) {
-                tempPlayer = index;
-                $scope.$on('youtube.player.ready', function ($event, player) {
-                    tempPlayer = player;
-                    players[index] = tempPlayer;
+            $scope.refreshPlayers = function (indexInput, indexOutput) {
 
-                    console.debug("found player id: " + player.id);
-                });
-                console.debug("Player now contains: ");
-                console.debug(players);
+                var uid = $scope.ionGalleryItems[indexInput].uid;
+                //console.debug(players);
+                //console.debug("uid is: " + uid);
+                if (($scope.ionGalleryItems[indexInput] != '')
+                    && (players[indexOutput] == 0)
+                    && (uid != '')
+                    && AUTO_REFRESH) {
+                    var tempPlayer = YT.get(uid);
+                    if (tempPlayer != null) {
+                        //console.debug("===Prendo da " + indexInput + " e metto in " + indexOutput + " ===");
+                        players[indexOutput] = tempPlayer;
+                        //console.debug("Player now contains: ");
+                        //console.debug(players);
+                    }
+
+                }
+
             }
 
             $scope.startVideo = function (index) {
-                if (!players.isEmpty) {
+                if (!players.isEmpty && AUTO_START) {
                     console.debug("ATTEMPTING TO START " + index + "° video in: ");
                     console.debug(players[index]);
                     if (players[index] != 0) {
-                        [index].playVideo();
+                        players[index].playVideo();
                     }
                 }
             }
 
-            $scope.stopVideo = function (index) {
-                if (!players.isEmpty) {
-                    console.debug("ATTEMPTING TO STOP " + index + "° video in: ");
-                    console.debug(players[index]);
-                    if (players[index] != 0) {
-                        players[index].stopVideo();
-                    }
+            $scope.stopVideo = function () {
+                if (!players.isEmpty && AUTO_STOP) {
+                    console.debug("ATTEMPTING TO STOP all videos");
+                    angular.forEach(players, function (player, key) {
+                        console.log(player);
+                        if (player != 0) player.stopVideo();
+                    });
                 }
             }
 
@@ -80,9 +89,8 @@
                 lastSlideIndex = 1;
                 $scope.loadModal();
 
-                console.debug("=========== " + lastSlideIndex + " ===========");
-                $scope.refreshPlayers(lastSlideIndex);
-                //$scope.startVideo(lastSlideIndex);
+                $scope.refreshPlayers(index, lastSlideIndex);
+                $scope.startVideo(index);
             };
 
             $scope.slideChanged = function (currentSlideIndex) {
@@ -93,6 +101,7 @@
 
                 var slideToLoad = $scope.slides.length - lastSlideIndex - currentSlideIndex;
                 var imageToLoad;
+                var videoToLoad;
                 var slidePosition = lastSlideIndex + '>' + currentSlideIndex;
 
                 if (slidePosition === '0>1' || slidePosition === '1>2' || slidePosition === '2>0') {
@@ -127,11 +136,10 @@
 
                 $scope.slides[slideToLoad] = $scope.ionGalleryItems[imageToLoad];
 
-                console.debug("=========== " + imageToLoad + " ===========");
-                if ($scope.ionGalleryItems[imageToLoad].hasOwnProperty('video')) {
-                    $scope.refreshPlayers(imageToLoad);
-                }
-                $scope.stopVideo(lastSlideIndex);
+                videoToLoad = imageToLoad - 1 < 0 ? galleryLength - 1 : imageToLoad - 1;
+
+                $scope.refreshPlayers(videoToLoad, imageToLoad);
+                $scope.stopVideo(imageToLoad);
                 $scope.startVideo(imageToLoad);
 
                 lastSlideIndex = currentSlideIndex;
@@ -215,17 +223,16 @@
             };
 
             scope.closeModal = function ($scope) {
-                console.debug("ATTEMPTING TO STOP all videos");
-                angular.forEach(players, function (player, key) {
-                    console.log(player);
-                    if (player != 0) player.stopVideo();
-                });
+                scope.stopVideo();
+                players = [];
                 _modal.hide();
             };
 
             scope.$on('$destroy', function () {
                 try {
                     _modal.remove();
+                    players = [];
+
                 } catch (err) {
                     console.log(err.message);
                 }

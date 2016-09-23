@@ -5,9 +5,9 @@
         .module('angular-multimediaslider')
         .service('ionGalleryHelper', ionGalleryHelper);
 
-    ionGalleryHelper.$inject = ['ionGalleryConfig'];
+    ionGalleryHelper.$inject = ['ionGalleryConfig', '$sce'];
 
-    function ionGalleryHelper(ionGalleryConfig) {
+    function ionGalleryHelper(ionGalleryConfig, $sce) {
 
         this.getRowSize = function (size, length) {
             var rowSize;
@@ -43,12 +43,15 @@
                     items[i].src = '';
                 }
 
-                if (!items[i].hasOwnProperty('videoUid')) {
-                    items[i].videoID = '';
+                if (!items[i].hasOwnProperty('uid')) {
+                    items[i].uid = '';
                 }
 
                 if (!items[i].hasOwnProperty('video')) {
                     items[i].video = '';
+                } else {
+                    var temp = "http://www.youtube.com/embed/"+items[i].video;
+                    items[i].video = $sce.trustAsResourceUrl(temp);
                 }
 
                 if (!items[i].hasOwnProperty('sub')) {
