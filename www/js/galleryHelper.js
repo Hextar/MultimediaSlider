@@ -9,6 +9,9 @@
 
     function ionGalleryHelper(ionGalleryConfig, $sce) {
 
+        var YTB_VIDEO_PREPEND  = "https://www.youtube.com/embed/";
+        var YTB_VIDEO_POSTPEND  = "?enablejsapi=1/";
+
         this.getRowSize = function (size, length) {
             var rowSize;
 
@@ -50,7 +53,7 @@
                 if (!items[i].hasOwnProperty('video')) {
                     items[i].video = '';
                 } else {
-                    var temp = "http://www.youtube.com/embed/"+items[i].video;
+                    var temp = YTB_VIDEO_PREPEND+items[i].video+YTB_VIDEO_POSTPEND;
                     items[i].video = $sce.trustAsResourceUrl(temp);
                 }
 
@@ -71,4 +74,5 @@
             return _gallery;
         };
     }
+
 })();

@@ -7,9 +7,7 @@
 
     ionSlider.$inject = ['$ionicModal', 'ionGalleryHelper', '$ionicPlatform', '$timeout', '$ionicScrollDelegate'];
 
-    var players = [];
-    var AUTO_REFRESH = false;
-    var AUTO_START= false;
+    var AUTO_START= true;
     var AUTO_STOP= true;
 
     function ionSlider($ionicModal, ionGalleryHelper, $ionicPlatform, $timeout, $ionicScrollDelegate) {
@@ -20,52 +18,29 @@
             link: link
         };
 
-        function controller($scope, $sce) {
+        function controller($scope) {
+
             var lastSlideIndex;
             var currentImage;
             var galleryLength = $scope.ionGalleryItems.length;
 
             var zoomStart = false;
 
-            players = Array.apply(null, new Array(galleryLength)).map(Number.prototype.valueOf, 0);
-
-            $scope.refreshPlayers = function (indexInput, indexOutput) {
-
-                var uid = $scope.ionGalleryItems[indexInput].uid;
-                //console.debug(players);
-                //console.debug("uid is: " + uid);
-                if (($scope.ionGalleryItems[indexInput] != '')
-                    && (players[indexOutput] == 0)
-                    && (uid != '')
-                    && AUTO_REFRESH) {
-                    var tempPlayer = YT.get(uid);
-                    if (tempPlayer != null) {
-                        //console.debug("===Prendo da " + indexInput + " e metto in " + indexOutput + " ===");
-                        players[indexOutput] = tempPlayer;
-                        //console.debug("Player now contains: ");
-                        //console.debug(players);
-                    }
-
-                }
-
-            }
-
             $scope.startVideo = function (index) {
-                if (!players.isEmpty && AUTO_START) {
-                    console.debug("ATTEMPTING TO START " + index + "° video in: ");
-                    console.debug(players[index]);
-                    if (players[index] != 0) {
-                        players[index].playVideo();
-                    }
+                var uid = $scope.ionGalleryItems[index].uid;
+                if(AUTO_START && uid != '') {
+                    console.debug("ATTEMPTING TO START " + uid + " video");
+                    callPlayer(uid, "playVideo");
                 }
             }
 
             $scope.stopVideo = function () {
-                if (!players.isEmpty && AUTO_STOP) {
+                if (AUTO_STOP) {
                     console.debug("ATTEMPTING TO STOP all videos");
-                    angular.forEach(players, function (player, key) {
-                        console.log(player);
-                        if (player != 0) player.stopVideo();
+                    angular.forEach($scope.ionGalleryItems, function (player, key) {
+                        callPlayer(player.uid, function() {
+                            callPlayer(uid, "stopVideo");
+                        });
                     });
                 }
             }
@@ -89,7 +64,6 @@
                 lastSlideIndex = 1;
                 $scope.loadModal();
 
-                $scope.refreshPlayers(index, lastSlideIndex);
                 $scope.startVideo(index);
             };
 
@@ -138,9 +112,8 @@
 
                 videoToLoad = imageToLoad - 1 < 0 ? galleryLength - 1 : imageToLoad - 1;
 
-                $scope.refreshPlayers(videoToLoad, imageToLoad);
-                $scope.stopVideo(imageToLoad);
-                $scope.startVideo(imageToLoad);
+                $scope.stopVideo();
+                $scope.startVideo(videoToLoad);
 
                 lastSlideIndex = currentSlideIndex;
 
@@ -222,16 +195,14 @@
                 _modal.show();
             };
 
-            scope.closeModal = function ($scope) {
+            scope.closeModal = function () {
                 scope.stopVideo();
-                players = [];
                 _modal.hide();
             };
 
             scope.$on('$destroy', function () {
                 try {
                     _modal.remove();
-                    players = [];
 
                 } catch (err) {
                     console.log(err.message);
