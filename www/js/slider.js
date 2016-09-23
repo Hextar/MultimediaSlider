@@ -38,9 +38,9 @@
                 if (AUTO_STOP) {
                     console.debug("ATTEMPTING TO STOP all videos");
                     angular.forEach($scope.ionGalleryItems, function (player, key) {
-                        callPlayer(player.uid, function() {
-                            callPlayer(uid, "stopVideo");
-                        });
+                        if(player.uid != '') {
+                            callPlayer(player.uid, "stopVideo");
+                        }
                     });
                 }
             }
