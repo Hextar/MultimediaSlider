@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="76cc70f5-f583-4985-8434-693454e62f0e" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/callPlayer.js" afterPath="$PROJECT_DIR$/www/js/callPlayer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/controllers.js" afterPath="$PROJECT_DIR$/www/js/controllers.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/galleryHelper.js" afterPath="$PROJECT_DIR$/www/js/galleryHelper.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/slider.js" afterPath="$PROJECT_DIR$/www/js/slider.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/templates/slider.html" afterPath="$PROJECT_DIR$/www/templates/slider.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/multimedia-slider.js" afterPath="$PROJECT_DIR$/dist/multimedia-slider.js" />
     </list>
     <ignored path="MultimediaSlider.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -52,31 +47,31 @@
       <file leaf-file-name="callPlayer.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/js/callPlayer.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
+            <state relative-caret-position="286">
               <caret line="81" column="0" selection-start-line="81" selection-start-column="0" selection-end-line="81" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="slider.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="slider.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/js/slider.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="623">
-              <caret line="47" column="85" selection-start-line="47" selection-start-column="85" selection-end-line="47" selection-end-column="85" />
+            <state relative-caret-position="210">
+              <caret line="10" column="9" selection-start-line="0" selection-start-column="0" selection-end-line="233" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="slider.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www/templates/slider.html">
+      <file leaf-file-name="multimedia-slider.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/dist/multimedia-slider.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="218">
-              <caret line="22" column="92" selection-start-line="22" selection-start-column="92" selection-end-line="22" selection-end-column="92" />
+            <state relative-caret-position="454">
+              <caret line="570" column="0" selection-start-line="570" selection-start-column="0" selection-end-line="570" selection-end-column="0" />
               <folding>
-                <element signature="n#style#0;n#div#1;n#ion-scroll#0;n#ion-slide#0;n#ion-slide-box#0;n#ion-content#0;n#ion-modal-view#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#div#1;n#ion-scroll#0;n#ion-slide#0;n#ion-slide-box#0;n#ion-content#0;n#ion-modal-view#0;n#!!top" expanded="true" />
+                <marker date="1474880709141" expanded="true" signature="18373:18393" ph="..." />
+                <marker date="1474880709141" expanded="true" signature="18469:18483" ph="..." />
               </folding>
             </state>
           </provider>
@@ -115,7 +110,6 @@
         <option value="$PROJECT_DIR$/www/js/rowHeight.js" />
         <option value="$PROJECT_DIR$/www/js/slideAction.js" />
         <option value="$PROJECT_DIR$/www/js/imageScale.js" />
-        <option value="$PROJECT_DIR$/dist/multimedia-slider.js" />
         <option value="$PROJECT_DIR$/www/js/galleryConfig.js" />
         <option value="$PROJECT_DIR$/www/js/gallery.js" />
         <option value="$PROJECT_DIR$/www/js/youtube-directive.js" />
@@ -126,6 +120,7 @@
         <option value="$PROJECT_DIR$/www/templates/slider.html" />
         <option value="$PROJECT_DIR$/www/js/callPlayer.js" />
         <option value="$PROJECT_DIR$/www/js/slider.js" />
+        <option value="$PROJECT_DIR$/dist/multimedia-slider.js" />
       </list>
     </option>
   </component>
@@ -200,6 +195,24 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="www" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MultimediaSlider" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MultimediaSlider" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="www" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="templates" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -797,12 +810,12 @@
       <workItem from="1474443614398" duration="19474000" />
       <workItem from="1474530210486" duration="19816000" />
       <workItem from="1474616718626" duration="22224000" />
-      <workItem from="1474874365916" duration="5877000" />
+      <workItem from="1474874365916" duration="6345000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="67590000" />
+    <option name="totallyTimeSpent" value="68058000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="2009" y="33" width="1591" height="1017" extended-state="6" />
@@ -816,7 +829,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26365796" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24703088" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Mongo Explorer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.16389549" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -958,8 +971,8 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1474473989094" expanded="true" signature="28320:28340" ph="..." />
-            <marker date="1474473989094" expanded="true" signature="28416:28430" ph="..." />
+            <marker date="1474880709141" expanded="true" signature="18373:18393" ph="..." />
+            <marker date="1474880709141" expanded="true" signature="18469:18483" ph="..." />
           </folding>
         </state>
       </provider>
@@ -986,6 +999,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="1078" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="1891" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -993,6 +1007,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="21">
           <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1000,6 +1015,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="160">
           <caret line="48" column="10" selection-start-line="48" selection-start-column="9" selection-end-line="48" selection-end-column="10" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1065,6 +1081,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="1236" selection-start-line="0" selection-start-column="1236" selection-end-line="0" selection-end-column="1236" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1134,48 +1151,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/js/gallery.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="21">
-          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/www/js/app.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="104">
           <caret line="22" column="19" selection-start-line="22" selection-start-column="19" selection-end-line="22" selection-end-column="19" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/js/galleryHelper.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="12" column="49" selection-start-line="12" selection-start-column="49" selection-end-line="12" selection-end-column="49" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dist/multimedia-slider.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="352" column="27" selection-start-line="352" selection-start-column="0" selection-end-line="353" selection-end-column="0" />
-          <folding>
-            <marker date="1474473989094" expanded="true" signature="28320:28340" ph="..." />
-            <marker date="1474473989094" expanded="true" signature="28416:28430" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/templates/slider.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="218">
-          <caret line="22" column="92" selection-start-line="22" selection-start-column="92" selection-end-line="22" selection-end-column="92" />
-          <folding>
-            <element signature="n#style#0;n#div#1;n#ion-scroll#0;n#ion-slide#0;n#ion-slide-box#0;n#ion-content#0;n#ion-modal-view#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#div#1;n#ion-scroll#0;n#ion-slide#0;n#ion-slide-box#0;n#ion-content#0;n#ion-modal-view#0;n#!!top" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1187,19 +1167,57 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/www/js/slider.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="10" column="9" selection-start-line="0" selection-start-column="0" selection-end-line="233" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/js/galleryHelper.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="9" column="32" selection-start-line="0" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/js/gallery.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-589">
+          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/templates/slider.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="421">
+          <caret line="34" column="17" selection-start-line="34" selection-start-column="17" selection-end-line="34" selection-end-column="17" />
+          <folding>
+            <element signature="n#style#0;n#div#1;n#ion-scroll#0;n#ion-slide#0;n#ion-slide-box#0;n#ion-content#0;n#ion-modal-view#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#div#1;n#ion-scroll#0;n#ion-slide#0;n#ion-slide-box#0;n#ion-content#0;n#ion-modal-view#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/www/js/callPlayer.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
+        <state relative-caret-position="286">
           <caret line="81" column="0" selection-start-line="81" selection-start-column="0" selection-end-line="81" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/js/slider.js">
+    <entry file="file://$PROJECT_DIR$/dist/multimedia-slider.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="623">
-          <caret line="47" column="85" selection-start-line="47" selection-start-column="85" selection-end-line="47" selection-end-column="85" />
-          <folding />
+        <state relative-caret-position="454">
+          <caret line="570" column="0" selection-start-line="570" selection-start-column="0" selection-end-line="570" selection-end-column="0" />
+          <folding>
+            <marker date="1474880709141" expanded="true" signature="18373:18393" ph="..." />
+            <marker date="1474880709141" expanded="true" signature="18469:18483" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
