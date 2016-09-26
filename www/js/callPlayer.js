@@ -70,10 +70,6 @@ function callPlayer(frame_id, func, args) {
             }, false);
         }
     } else if (iframe && iframe.contentWindow) {
-
-        console.log(iframe);
-        console.log(iframe.contentWindow);
-
         // When a function is supplied, just call it (like "onYouTubePlayerReady")
         if (func.call) return func();
         // Frame exists, send message

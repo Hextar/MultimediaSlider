@@ -10,7 +10,7 @@
     function ionGalleryHelper(ionGalleryConfig, $sce) {
 
         var YTB_VIDEO_PREPEND  = "https://www.youtube.com/embed/";
-        var YTB_VIDEO_POSTPEND  = "?enablejsapi=1/";
+        var YTB_VIDEO_POSTPEND  = "?enablejsapi=1";
 
         this.getRowSize = function (size, length) {
             var rowSize;
@@ -54,6 +54,7 @@
                     items[i].video = '';
                 } else {
                     var temp = YTB_VIDEO_PREPEND+items[i].video+YTB_VIDEO_POSTPEND;
+                    console.debug(temp);
                     items[i].video = $sce.trustAsResourceUrl(temp);
                 }
 

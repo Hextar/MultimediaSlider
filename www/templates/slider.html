@@ -20,7 +20,7 @@
                     <div class="item item-image gallery-slide-view">
                         <img ng-src="{{single.src}}" ng-show="single.src!=''">
                         <div class="embed-responsive embed-responsive-16by9" ng-if="single.video!=''">
-                            <iframe id="{{single.uid}}" class="embed-responsive-item" src="http://www.youtube.com/embed/u1zgFlCw8Aw?enablejsapi=1" frameborder="0" allowfullscreen></iframe>
+                            <iframe id="{{single.uid}}" class="embed-responsive-item" src={{single.video}} frameborder="0" allowfullscreen></iframe>
                         </div>
                     </div>
                     <div ng-if="single.sub.length > 0" style="width: 100%; left: 0" class="text-center image-subtitle"

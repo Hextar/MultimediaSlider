@@ -15,12 +15,12 @@ angular.module('angular-multimediaslider')
                 thumb: 'http://placehold.it/100x100'
             },
             {
+                uid : '222',
                 video: 'rwTZKRA4mys',
                 sub: 'This is <b>SAMPLE 3</b>',
                 thumb: 'http://placehold.it/100x100'
             },
             {
-                uid : '222',
                 src: 'http://placehold.it/300x200',
                 sub: 'This is <b>SAMPLE 4</b>',
                 thumb: 'http://placehold.it/100x100'
