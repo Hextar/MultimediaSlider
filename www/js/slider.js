@@ -7,16 +7,26 @@
 
     ionSlider.$inject = ['$ionicModal', 'ionGalleryHelper', '$ionicPlatform', '$timeout', '$ionicScrollDelegate'];
 
+    // from YT.PlayerState
+    var stateNames = {
+        '-1': 'unstarted',
+        0: 'ended',
+        1: 'playing',
+        2: 'paused',
+        3: 'buffering',
+        5: 'queued'
+    };
+
+    var eventPrefix = 'youtube.player.';
+
     var AUTO_START= false;
     var AUTO_STOP= true;
     var AUTO_DESTROY= true;
 
-    var playing = [];
-
     function ionSlider($ionicModal, ionGalleryHelper, $ionicPlatform, $timeout, $ionicScrollDelegate) {
 
         return {
-            restrict: 'A',
+            restrict: 'EA',
             controller: controller,
             link: link
         };
@@ -29,14 +39,10 @@
 
             var zoomStart = false;
 
-            playing = Array.apply(null, new Array(galleryLength)).map(Boolean.prototype.valueOf, false);
-            console.debug(playing);
-
             $scope.startVideo = function (index) {
                 var uid = $scope.ionGalleryItems[index].uid;
                 if(AUTO_START && uid != '') {
                     console.debug("ATTEMPTING TO START " + uid + " video");
-                    playing[index] = true;
                     callPlayer(uid, "playVideo");
                 }
             }
@@ -45,10 +51,9 @@
                 console.debug("===== index is "+index+" ======");
                 if (AUTO_STOP) {
                     angular.forEach($scope.ionGalleryItems, function (player, key) {
-                        if(player.uid != '' && (playing[index] || index === undefined)) {
+                        if(player.uid != '' || index === undefined) {
                             console.debug("ATTEMPTING TO STOP " + player.uid + " video");
-                            playing[index] = false;
-                            callPlayer(player.uid, "pauseVideo");
+                            callPlayer(player.uid, "stopVideo");
                         }
                     });
                 }

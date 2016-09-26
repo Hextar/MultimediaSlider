@@ -54,7 +54,6 @@
                     items[i].video = '';
                 } else {
                     var temp = YTB_VIDEO_PREPEND+items[i].video+YTB_VIDEO_POSTPEND;
-                    console.debug(temp);
                     items[i].video = $sce.trustAsResourceUrl(temp);
                 }
 

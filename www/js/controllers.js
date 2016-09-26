@@ -16,7 +16,7 @@ angular.module('angular-multimediaslider')
             },
             {
                 uid : '222',
-                video: 'rwTZKRA4mys',
+                video: '_JS_RFCQZtc',
                 sub: 'This is <b>SAMPLE 3</b>',
                 thumb: 'http://placehold.it/100x100'
             },

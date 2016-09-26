@@ -338,16 +338,26 @@
 
     ionSlider.$inject = ['$ionicModal', 'ionGalleryHelper', '$ionicPlatform', '$timeout', '$ionicScrollDelegate'];
 
+    // from YT.PlayerState
+    var stateNames = {
+        '-1': 'unstarted',
+        0: 'ended',
+        1: 'playing',
+        2: 'paused',
+        3: 'buffering',
+        5: 'queued'
+    };
+
+    var eventPrefix = 'youtube.player.';
+
     var AUTO_START= false;
     var AUTO_STOP= true;
     var AUTO_DESTROY= true;
 
-    var playing = [];
-
     function ionSlider($ionicModal, ionGalleryHelper, $ionicPlatform, $timeout, $ionicScrollDelegate) {
 
         return {
-            restrict: 'A',
+            restrict: 'EA',
             controller: controller,
             link: link
         };
@@ -360,14 +370,10 @@
 
             var zoomStart = false;
 
-            playing = Array.apply(null, new Array(galleryLength)).map(Boolean.prototype.valueOf, false);
-            console.debug(playing);
-
             $scope.startVideo = function (index) {
                 var uid = $scope.ionGalleryItems[index].uid;
                 if(AUTO_START && uid != '') {
                     console.debug("ATTEMPTING TO START " + uid + " video");
-                    playing[index] = true;
                     callPlayer(uid, "playVideo");
                 }
             }
@@ -376,10 +382,9 @@
                 console.debug("===== index is "+index+" ======");
                 if (AUTO_STOP) {
                     angular.forEach($scope.ionGalleryItems, function (player, key) {
-                        if(player.uid != '' && (playing[index] || index === undefined)) {
+                        if(player.uid != '' || index === undefined) {
                             console.debug("ATTEMPTING TO STOP " + player.uid + " video");
-                            playing[index] = false;
-                            callPlayer(player.uid, "pauseVideo");
+                            callPlayer(player.uid, "stopVideo");
                         }
                     });
                 }
@@ -566,5 +571,5 @@
 
 angular.module("templates", []).run(["$templateCache", function($templateCache) {
     $templateCache.put("templates/gallery.html","<div class=\"gallery-view\"> <div class=\"row\" ng-repeat=\"item in items track by $index\" ion-row-height> <div ng-repeat=\"photo in item track by $index\" class=\"col col-{{responsiveGrid}}image-container\"> <img ion-image-scale ng-src=\"{{photo.thumb}}\" ng-click=\"customCallback ? ionItemCallback({item:photo}) : showImage(photo.position)\"> </div></div><div ion-slider></div></div>");
-    $templateCache.put("templates/slider.html","<ion-modal-view class=\"imageView\"> <ion-header-bar class=\"headerView\" ng-show=\"!hideAll\"> <button class=\"button button-outline button-light close-btn\" ng-click=\"closeModal()\">{{::actionLabel}}</button> </ion-header-bar> <ion-content class=\"has-no-header\" scroll=\"false\"> <ion-slide-box does-continue=\"true\" active-slide=\"selectedSlide\" show-pager=\"false\" class=\"listContainer\" on-slide-changed=\"slideChanged($index)\"> <ion-slide ng-repeat=\"single in slides track by $index\"> <ion-scroll direction=\"x\" locking=\"false\" zooming=\"true\" min-zoom=\"1\" scrollbar-x=\"false\" scrollbar-y=\"false\" ion-slide-action delegate-handle=\"slide-{{$index}}\" overflow-scroll=\"false\" > <div class=\"item item-image gallery-slide-view\"> <img ng-src=\"{{single.src}}\" ng-show=\"single.src!=''\"> <div class=\"embed-responsive embed-responsive-16by9\" ng-if=\"single.video!=''\"> <iframe id=\"{{single.uid}}\" class=\"embed-responsive-item\" src={{single.video}}frameborder=\"0\" allowfullscreen></iframe> </div></div><div ng-if=\"single.sub.length > 0\" style=\"width: 100%; left: 0\" class=\"text-center image-subtitle\" ng-show=\"!hideAll\"> <span style=\"margin: 0 auto\" ng-bind-html='single.sub'></span> </div></ion-scroll> </ion-slide> </ion-slide-box> </ion-content></ion-modal-view>");
+    $templateCache.put("templates/slider.html","<ion-modal-view class=\"imageView\"> <ion-header-bar class=\"headerView\" ng-show=\"!hideAll\"> <button class=\"button button-outline button-light close-btn\" ng-click=\"closeModal()\">{{::actionLabel}}</button> </ion-header-bar> <ion-content class=\"has-no-header\" scroll=\"false\"> <ion-slide-box does-continue=\"true\" active-slide=\"selectedSlide\" show-pager=\"false\" class=\"listContainer\" on-slide-changed=\"slideChanged($index)\"> <ion-slide ng-repeat=\"single in slides track by $index\"> <ion-scroll direction=\"x\" locking=\"false\" zooming=\"true\" min-zoom=\"1\" scrollbar-x=\"false\" scrollbar-y=\"false\" ion-slide-action delegate-handle=\"slide-{{$index}}\" overflow-scroll=\"false\" > <div class=\"item item-image gallery-slide-view\"> <img ng-src=\"{{single.src}}\" ng-show=\"single.src!=''\"> <div class=\"embed-responsive embed-responsive-16by9\" ng-if=\"single.video!=''\"> <iframe id=\"{{single.uid}}\" class=\"embed-responsive-item\" src={{single.video}} frameborder=\"0\" allowfullscreen></iframe> </div></div><div ng-if=\"single.sub.length > 0\" style=\"width: 100%; left: 0\" class=\"text-center image-subtitle\" ng-show=\"!hideAll\"> <span style=\"margin: 0 auto\" ng-bind-html='single.sub'></span> </div></ion-scroll> </ion-slide> </ion-slide-box> </ion-content></ion-modal-view>");
 }]);
