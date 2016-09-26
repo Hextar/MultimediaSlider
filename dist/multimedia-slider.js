@@ -5,7 +5,7 @@
     'use strict';
 
     angular
-        .module('angular-multimediaslider')
+        .module('angular-multimediaslider', ['templates'])
         .directive('ionGallery', ionGallery);
 
     ionGallery.$inject = ['$ionicPlatform', 'ionGalleryHelper', 'ionGalleryConfig'];
@@ -153,6 +153,8 @@
 
                 if (!items[i].hasOwnProperty('uid') && items[i].video != '') {
                     items[i].uid = UID_PREPEND+uidCounter++;
+                } else {
+                    items[i].uid = UID_PREPEND+items[i].uid;
                 }
 
                 if (!items[i].hasOwnProperty('sub')) {
@@ -174,6 +176,7 @@
     }
 
 })();
+
 
 
 /*** ************* ***/
