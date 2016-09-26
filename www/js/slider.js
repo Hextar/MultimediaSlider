@@ -89,7 +89,7 @@
                 $scope.slides[2] = $scope.ionGalleryItems[nextindex];
 
                 lastSlideIndex = 1;
-                imageToLoad = lastSlideIndex;
+                imageToLoad = 1;
                 $scope.loadModal();
 
                 $scope.startVideo(index);
