@@ -9,13 +9,11 @@ angular.module('angular-multimediaslider')
                 thumb: 'http://placehold.it/100x100'
             },
             {
-                uid : '111',
                 video: 'CjgnyPGAgp8',
                 sub: 'This is <b>SAMPLE 2</b>',
                 thumb: 'http://placehold.it/100x100'
             },
             {
-                uid : '222',
                 video: '_JS_RFCQZtc',
                 sub: 'This is <b>SAMPLE 3</b>',
                 thumb: 'http://placehold.it/100x100'
@@ -26,7 +24,6 @@ angular.module('angular-multimediaslider')
                 thumb: 'http://placehold.it/100x100'
             },
             {
-                uid : '333',
                 video: 'u36IGHpWUgg',
                 sub: 'This is a <b>SAMPLE 5</b>',
                 thumb: 'http://placehold.it/100x100'
