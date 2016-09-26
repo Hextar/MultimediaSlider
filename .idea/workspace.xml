@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="76cc70f5-f583-4985-8434-693454e62f0e" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/multimedia-slider.js" afterPath="$PROJECT_DIR$/dist/multimedia-slider.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/galleryHelper.js" afterPath="$PROJECT_DIR$/www/js/galleryHelper.js" />
     </list>
     <ignored path="MultimediaSlider.iws" />
@@ -46,17 +44,17 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="galleryHelper.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="galleryHelper.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/www/js/galleryHelper.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="62" column="17" selection-start-line="0" selection-start-column="0" selection-end-line="83" selection-end-column="0" />
+            <state relative-caret-position="433">
+              <caret line="64" column="17" selection-start-line="64" selection-start-column="17" selection-end-line="64" selection-end-column="17" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="multimedia-slider.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="multimedia-slider.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dist/multimedia-slider.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="433">
@@ -112,8 +110,8 @@
         <option value="$PROJECT_DIR$/www/js/app.js" />
         <option value="$PROJECT_DIR$/www/js/multimedia-slider.js" />
         <option value="$PROJECT_DIR$/www/index.html" />
-        <option value="$PROJECT_DIR$/www/js/galleryHelper.js" />
         <option value="$PROJECT_DIR$/dist/multimedia-slider.js" />
+        <option value="$PROJECT_DIR$/www/js/galleryHelper.js" />
       </list>
     </option>
   </component>
@@ -803,12 +801,12 @@
       <workItem from="1474443614398" duration="19474000" />
       <workItem from="1474530210486" duration="19816000" />
       <workItem from="1474616718626" duration="22224000" />
-      <workItem from="1474874365916" duration="20301000" />
+      <workItem from="1474874365916" duration="20582000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="82014000" />
+    <option name="totallyTimeSpent" value="82295000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="2009" y="33" width="1591" height="1017" extended-state="6" />
@@ -1221,14 +1219,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/js/galleryHelper.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="62" column="17" selection-start-line="0" selection-start-column="0" selection-end-line="83" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/dist/multimedia-slider.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="433">
@@ -1237,6 +1227,14 @@
             <marker date="1474905042457" expanded="true" signature="18795:18815" ph="..." />
             <marker date="1474905042457" expanded="true" signature="18891:18905" ph="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/js/galleryHelper.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="433">
+          <caret line="64" column="17" selection-start-line="64" selection-start-column="17" selection-end-line="64" selection-end-column="17" />
+          <folding />
         </state>
       </provider>
     </entry>

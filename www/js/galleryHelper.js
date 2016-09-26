@@ -58,8 +58,10 @@
 
                 if (!items[i].hasOwnProperty('uid') && items[i].video != '') {
                     items[i].uid = UID_PREPEND+uidCounter++;
-                } else {
+                } else if (items[i].video != '') {
                     items[i].uid = UID_PREPEND+items[i].uid;
+                } else {
+                    items[i].uid = '';
                 }
 
                 if (!items[i].hasOwnProperty('sub')) {
