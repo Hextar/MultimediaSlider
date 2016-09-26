@@ -103,8 +103,8 @@
 
     function ionGalleryHelper(ionGalleryConfig, $sce) {
 
-        var YTB_VIDEO_PREPEND = "https://www.youtube.com/embed/";
-        var YTB_VIDEO_POSTPEND = "?enablejsapi=1";
+        var YTB_VIDEO_PREPEND  = "https://www.youtube.com/embed/";
+        var YTB_VIDEO_POSTPEND  = "?enablejsapi=1";
 
         this.getRowSize = function (size, length) {
             var rowSize;
@@ -128,6 +128,9 @@
             var row = -1;
             var col = 0;
 
+            var UID_PREPEND = "youtube-embed-uid-";
+            var uidCounter = 1;
+
             for (var i = 0; i < items.length; i++) {
 
                 if (i % rowSize === 0) {
@@ -140,16 +143,15 @@
                     items[i].src = '';
                 }
 
-                if (!items[i].hasOwnProperty('uid')) {
-                    items[i].uid = '';
-                }
-
                 if (!items[i].hasOwnProperty('video')) {
                     items[i].video = '';
                 } else {
-                    var temp = YTB_VIDEO_PREPEND + items[i].video + YTB_VIDEO_POSTPEND;
-                    console.debug(temp);
+                    var temp = YTB_VIDEO_PREPEND+items[i].video+YTB_VIDEO_POSTPEND;
                     items[i].video = $sce.trustAsResourceUrl(temp);
+                }
+
+                if (!items[i].hasOwnProperty('uid') && items[i].video != '') {
+                    items[i].uid = UID_PREPEND+uidCounter++;
                 }
 
                 if (!items[i].hasOwnProperty('sub')) {

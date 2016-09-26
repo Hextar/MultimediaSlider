@@ -59,11 +59,11 @@
       <file leaf-file-name="multimedia-slider.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/dist/multimedia-slider.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="209">
-              <caret line="744" column="16" selection-start-line="744" selection-start-column="16" selection-end-line="744" selection-end-column="16" />
+            <state relative-caret-position="336">
+              <caret line="103" column="13" selection-start-line="103" selection-start-column="13" selection-end-line="103" selection-end-column="13" />
               <folding>
-                <marker date="1474902855473" expanded="true" signature="22478:22498" ph="..." />
-                <marker date="1474902855473" expanded="true" signature="22574:22588" ph="..." />
+                <marker date="1474903074397" expanded="true" signature="22566:22586" ph="..." />
+                <marker date="1474903074397" expanded="true" signature="22662:22676" ph="..." />
               </folding>
             </state>
           </provider>
@@ -812,12 +812,12 @@
       <workItem from="1474443614398" duration="19474000" />
       <workItem from="1474530210486" duration="19816000" />
       <workItem from="1474616718626" duration="22224000" />
-      <workItem from="1474874365916" duration="18414000" />
+      <workItem from="1474874365916" duration="18628000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="80127000" />
+    <option name="totallyTimeSpent" value="80341000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="2009" y="33" width="1591" height="1017" extended-state="6" />
@@ -973,8 +973,8 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1474902855473" expanded="true" signature="22478:22498" ph="..." />
-            <marker date="1474902855473" expanded="true" signature="22574:22588" ph="..." />
+            <marker date="1474903074397" expanded="true" signature="22566:22586" ph="..." />
+            <marker date="1474903074397" expanded="true" signature="22662:22676" ph="..." />
           </folding>
         </state>
       </provider>
@@ -1166,14 +1166,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/js/galleryHelper.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
-          <caret line="58" column="75" selection-start-line="58" selection-start-column="75" selection-end-line="58" selection-end-column="75" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/www/templates/slider.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="714">
@@ -1209,6 +1201,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/www/js/galleryHelper.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="81" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/www/js/callPlayer.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1027">
@@ -1221,11 +1221,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/dist/multimedia-slider.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="744" column="16" selection-start-line="744" selection-start-column="16" selection-end-line="744" selection-end-column="16" />
+        <state relative-caret-position="336">
+          <caret line="103" column="13" selection-start-line="103" selection-start-column="13" selection-end-line="103" selection-end-column="13" />
           <folding>
-            <marker date="1474902855473" expanded="true" signature="22478:22498" ph="..." />
-            <marker date="1474902855473" expanded="true" signature="22574:22588" ph="..." />
+            <marker date="1474903074397" expanded="true" signature="22566:22586" ph="..." />
+            <marker date="1474903074397" expanded="true" signature="22662:22676" ph="..." />
           </folding>
         </state>
       </provider>
