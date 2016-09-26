@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="76cc70f5-f583-4985-8434-693454e62f0e" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/controllers.js" afterPath="$PROJECT_DIR$/www/js/controllers.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/galleryHelper.js" afterPath="$PROJECT_DIR$/www/js/galleryHelper.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/multimedia-slider.js" afterPath="$PROJECT_DIR$/dist/multimedia-slider.js" />
     </list>
     <ignored path="MultimediaSlider.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -35,11 +34,46 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="controllers.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="controllers.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/js/controllers.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="399">
-              <caret line="19" column="14" selection-start-line="19" selection-start-column="14" selection-end-line="19" selection-end-column="14" />
+            <state relative-caret-position="273">
+              <caret line="13" column="30" selection-start-line="13" selection-start-column="30" selection-end-line="13" selection-end-column="30" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="callPlayer.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/www/js/callPlayer.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1027">
+              <caret line="65" column="28" selection-start-line="65" selection-start-column="28" selection-end-line="65" selection-end-column="28" />
+              <folding>
+                <element signature="e#3260#3345#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="multimedia-slider.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/dist/multimedia-slider.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="209">
+              <caret line="744" column="16" selection-start-line="744" selection-start-column="16" selection-end-line="744" selection-end-column="16" />
+              <folding>
+                <marker date="1474902855473" expanded="true" signature="22478:22498" ph="..." />
+                <marker date="1474902855473" expanded="true" signature="22574:22588" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/www/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="251">
+              <caret line="27" column="33" selection-start-line="27" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -85,10 +119,10 @@
         <option value="$PROJECT_DIR$/www/index.html" />
         <option value="$PROJECT_DIR$/www/templates/slider.html" />
         <option value="$PROJECT_DIR$/www/js/callPlayer.js" />
-        <option value="$PROJECT_DIR$/dist/multimedia-slider.js" />
         <option value="$PROJECT_DIR$/www/js/slider.js" />
         <option value="$PROJECT_DIR$/www/js/controllers.js" />
         <option value="$PROJECT_DIR$/www/js/galleryHelper.js" />
+        <option value="$PROJECT_DIR$/dist/multimedia-slider.js" />
       </list>
     </option>
   </component>
@@ -778,12 +812,12 @@
       <workItem from="1474443614398" duration="19474000" />
       <workItem from="1474530210486" duration="19816000" />
       <workItem from="1474616718626" duration="22224000" />
-      <workItem from="1474874365916" duration="17186000" />
+      <workItem from="1474874365916" duration="18414000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="78899000" />
+    <option name="totallyTimeSpent" value="80127000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="2009" y="33" width="1591" height="1017" extended-state="6" />
@@ -939,8 +973,8 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1474884078473" expanded="true" signature="18327:18347" ph="..." />
-            <marker date="1474884078473" expanded="true" signature="18423:18437" ph="..." />
+            <marker date="1474902855473" expanded="true" signature="22478:22498" ph="..." />
+            <marker date="1474902855473" expanded="true" signature="22574:22588" ph="..." />
           </folding>
         </state>
       </provider>
@@ -1092,22 +1126,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/www/js/youtube-directive.js" />
     <entry file="file://$PROJECT_DIR$/www/js/youtube-service.js" />
-    <entry file="file://$PROJECT_DIR$/www/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="251">
-          <caret line="27" column="30" selection-start-line="27" selection-start-column="30" selection-end-line="27" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/js/callPlayer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="81" column="0" selection-start-line="81" selection-start-column="0" selection-end-line="81" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/www/templates/home.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="42">
@@ -1129,17 +1147,6 @@
         <state relative-caret-position="273">
           <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dist/multimedia-slider.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="398">
-          <caret line="569" column="0" selection-start-line="569" selection-start-column="0" selection-end-line="569" selection-end-column="0" />
-          <folding>
-            <marker date="1474884078473" expanded="true" signature="18327:18347" ph="..." />
-            <marker date="1474884078473" expanded="true" signature="18423:18437" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1188,9 +1195,38 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/www/js/controllers.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
-          <caret line="19" column="14" selection-start-line="19" selection-start-column="14" selection-end-line="19" selection-end-column="14" />
+        <state relative-caret-position="273">
+          <caret line="13" column="30" selection-start-line="13" selection-start-column="30" selection-end-line="13" selection-end-column="30" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="251">
+          <caret line="27" column="33" selection-start-line="27" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/js/callPlayer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1027">
+          <caret line="65" column="28" selection-start-line="65" selection-start-column="28" selection-end-line="65" selection-end-column="28" />
+          <folding>
+            <element signature="e#3260#3345#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dist/multimedia-slider.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="744" column="16" selection-start-line="744" selection-start-column="16" selection-end-line="744" selection-end-column="16" />
+          <folding>
+            <marker date="1474902855473" expanded="true" signature="22478:22498" ph="..." />
+            <marker date="1474902855473" expanded="true" signature="22574:22588" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
