@@ -21,7 +21,7 @@
 
     var AUTO_START= false;
     var AUTO_STOP= true;
-    var AUTO_DESTROY= true;
+    var AUTO_DESTROY= false;
 
     function ionSlider($ionicModal, ionGalleryHelper, $ionicPlatform, $timeout, $ionicScrollDelegate) {
 
@@ -31,10 +31,11 @@
             link: link
         };
 
-        function controller($scope) {
+        function controller($scope, $window) {
 
             var lastSlideIndex;
             var currentImage;
+            var imageToLoad;
             var galleryLength = $scope.ionGalleryItems.length;
 
             var zoomStart = false;
@@ -47,11 +48,10 @@
                 }
             }
 
-            $scope.stopVideo = function (index) {
-                console.debug("===== index is "+index+" ======");
+            $scope.stopVideo = function () {
                 if (AUTO_STOP) {
-                    angular.forEach($scope.ionGalleryItems, function (player, key) {
-                        if(player.uid != '' || index === undefined) {
+                    angular.forEach($scope.slides, function (player, key) {
+                        if(player.uid != '') {
                             console.debug("ATTEMPTING TO STOP " + player.uid + " video");
                             callPlayer(player.uid, "stopVideo");
                         }
@@ -59,9 +59,13 @@
                 }
             }
 
+            $scope.reloadPage = function () {
+                $window.location.reload(true);
+            }
+
             $scope.destroyPlayers = function () {
                 if (AUTO_DESTROY) {
-                    angular.forEach($scope.ionGalleryItems, function (player, key) {
+                    angular.forEach($scope.slides, function (player, key) {
                         if(player.uid != '') {
                             callPlayer(player.uid, "destroy");
                         }
@@ -85,6 +89,7 @@
                 $scope.slides[2] = $scope.ionGalleryItems[nextindex];
 
                 lastSlideIndex = 1;
+                imageToLoad = lastSlideIndex;
                 $scope.loadModal();
 
                 $scope.startVideo(index);
@@ -97,7 +102,6 @@
                 }
 
                 var slideToLoad = $scope.slides.length - lastSlideIndex - currentSlideIndex;
-                var imageToLoad;
                 var videoToLoad;
                 var slidePosition = lastSlideIndex + '>' + currentSlideIndex;
 
@@ -159,7 +163,11 @@
 
             $scope.$on('DoubleTapEvent', function (event, position) {
                 $timeout(function () {
-                    _onDoubleTap(position);
+                    var index = imageToLoad % $scope.slides.length;
+                    //console.debug($scope.slides[index]);
+                    if($scope.slides[index].video == '') {
+                        _onDoubleTap(position);
+                    }
                 });
 
             });
@@ -226,9 +234,10 @@
 
             scope.$on('$destroy', function () {
                 try {
+                    scope.reloadPage;
+
                     scope.destroyPlayers();
                     _modal.remove();
-
                 } catch (err) {
                     console.log(err.message);
                 }
