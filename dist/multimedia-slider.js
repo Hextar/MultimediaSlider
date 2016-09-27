@@ -6,27 +6,55 @@
 
     angular
         .module('angular-multimediaslider', ['templates'])
-        .provider('ionGalleryConfig', ionGalleryConfig);
+        .directive('ionGallery', ionGallery);
 
-    ionGalleryConfig.$inject = [];
+    ionGallery.$inject = ['$ionicPlatform', 'ionGalleryHelper', 'ionGalleryConfig'];
 
-    function ionGalleryConfig() {
-        this.config = {
-            action_label: 'Close',
-            toggle: true,
-            row_size: 3,
-            fixed_row_size: true
+    function ionGallery($ionicPlatform, ionGalleryHelper, ionGalleryConfig) {
+        return {
+            restrict: 'AE',
+            scope: {
+                ionGalleryItems: '=ionGalleryItems',
+                ionGalleryRowSize: '=?ionGalleryRow',
+                ionItemCallback: '&?ionItemCallback'
+            },
+            controller: controller,
+            link: link,
+            replace: true,
+            templateUrl: 'templates/gallery.html'
         };
 
-        this.$get = function () {
-            return this.config;
-        };
+        function controller($scope) {
+            var _rowSize = parseInt($scope.ionGalleryRowSize);
 
-        this.setGalleryConfig = function (config) {
-            angular.extend(this.config, this.config, config);
-        };
+            var _drawGallery = function () {
+                $scope.ionGalleryRowSize = ionGalleryHelper.getRowSize(_rowSize || ionGalleryConfig.row_size, $scope.ionGalleryItems.length);
+                $scope.actionLabel = ionGalleryConfig.action_label;
+                $scope.items = ionGalleryHelper.buildGallery($scope.ionGalleryItems, $scope.ionGalleryRowSize);
+                $scope.responsiveGrid = parseInt((1 / $scope.ionGalleryRowSize) * 100);
+            };
+
+            _drawGallery();
+
+            (function () {
+                $scope.$watch(function () {
+                    return $scope.ionGalleryItems.length;
+                }, function (newVal, oldVal) {
+                    if (newVal !== oldVal) {
+                        _drawGallery();
+                    }
+                });
+            }());
+
+        }
+
+        function link(scope, element, attrs) {
+
+            scope.customCallback = angular.isFunction(scope.ionItemCallback) && attrs.hasOwnProperty('ionItemCallback')
+
+            scope.ionSliderToggle = attrs.ionGalleryToggle === 'false' ? false : ionGalleryConfig.toggle;
+        }
     }
-
 })();
 
 
@@ -71,7 +99,7 @@
     angular
         .module('angular-multimediaslider')
         .service('ionGalleryHelper', ionGalleryHelper);
-//posa
+
     ionGalleryHelper.$inject = ['ionGalleryConfig', '$sce'];
 
     function ionGalleryHelper(ionGalleryConfig, $sce) {
