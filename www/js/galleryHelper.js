@@ -9,8 +9,10 @@
 
     function ionGalleryHelper(ionGalleryConfig, $sce) {
 
-        var YTB_VIDEO_PREPEND  = "https://www.youtube.com/embed/";
-        var YTB_VIDEO_POSTPEND  = "?enablejsapi=1";
+        var YTB_VIDEO_PREPEND = "https://www.youtube.com/embed/";
+        var YTB_VIDEO_POSTPEND = "?enablejsapi=1&amp;rel=0&amp;showinfo=0&amp;wmode=transparent";
+        var UID_PREPEND = "youtube-embed-uid-";
+        var uidCounter = 1;
 
         this.getRowSize = function (size, length) {
             var rowSize;
@@ -33,9 +35,6 @@
             var _gallery = [];
             var row = -1;
             var col = 0;
-
-            var UID_PREPEND = "youtube-embed-uid-";
-            var uidCounter = 1;
 
             for (var i = 0; i < items.length; i++) {
 

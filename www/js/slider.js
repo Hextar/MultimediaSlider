@@ -31,36 +31,37 @@
             link: link
         };
 
-        function controller($scope, $window) {
+        function controller($scope) {
 
             var lastSlideIndex;
             var currentImage;
             var imageToLoad;
-            var galleryLength = $scope.ionGalleryItems.length;
+            var galleryLength = 0;
 
             var zoomStart = false;
 
+
             $scope.startVideo = function (index) {
-                var uid = $scope.ionGalleryItems[index].uid;
-                if(AUTO_START && uid != '') {
-                    console.debug("ATTEMPTING TO START " + uid + " video");
-                    callPlayer(uid, "playVideo");
+                if(AUTO_START) {
+                    var uid = $scope.ionGalleryItems[index].uid;
+                    if (uid != '') {
+                        console.debug("ATTEMPTING TO START " + uid + " video");
+                        callPlayer(uid, "playVideo");
+                    }
                 }
             }
 
             $scope.stopVideo = function () {
                 if (AUTO_STOP) {
-                    angular.forEach($scope.slides, function (player, key) {
-                        if(player.uid != '') {
-                            console.debug("ATTEMPTING TO STOP " + player.uid + " video");
-                            callPlayer(player.uid, "stopVideo");
+                    console.debug($scope.ionGalleryItems);
+
+                    angular.forEach($scope.ionGalleryItems, function (media, key) {
+                        if(media.uid != '') {
+                            console.debug("ATTEMPTING TO STOP " + media.uid + " video");
+                            callPlayer(media.uid, "stopVideo");
                         }
                     });
                 }
-            }
-
-            $scope.reloadPage = function () {
-                $window.location.reload(true);
             }
 
             $scope.destroyPlayers = function () {
@@ -81,8 +82,13 @@
 
                 currentImage = index;
 
+                galleryLength = $scope.ionGalleryItems.length;
+
+                console.debug($scope.ionGalleryItems.length);
+
                 var previndex = index - 1 < 0 ? galleryLength - 1 : index - 1;
                 var nextindex = index + 1 >= galleryLength ? 0 : index + 1;
+
 
                 $scope.slides[0] = $scope.ionGalleryItems[previndex];
                 $scope.slides[1] = $scope.ionGalleryItems[index];
@@ -228,14 +234,11 @@
 
             scope.closeModal = function () {
                 scope.stopVideo();
-                scope.destroyPlayers();
                 _modal.hide();
             };
 
             scope.$on('$destroy', function () {
                 try {
-                    scope.reloadPage;
-
                     scope.destroyPlayers();
                     _modal.remove();
                 } catch (err) {
