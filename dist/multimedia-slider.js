@@ -5,7 +5,7 @@
     'use strict';
 
     angular
-        .module('angular-multimediaslider')
+        .module('angular-multimediaslider', ['templates'])
         .provider('ionGalleryConfig', ionGalleryConfig);
 
     ionGalleryConfig.$inject = [];
