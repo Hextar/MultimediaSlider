@@ -7,18 +7,6 @@
 
     ionSlider.$inject = ['$ionicModal', 'ionGalleryHelper', '$ionicPlatform', '$timeout', '$ionicScrollDelegate'];
 
-    // from YT.PlayerState
-    var stateNames = {
-        '-1': 'unstarted',
-        0: 'ended',
-        1: 'playing',
-        2: 'paused',
-        3: 'buffering',
-        5: 'queued'
-    };
-
-    var eventPrefix = 'youtube.player.';
-
     var AUTO_START= false;
     var AUTO_STOP= true;
     var AUTO_DESTROY= false;
@@ -53,9 +41,7 @@
 
             $scope.stopVideo = function () {
                 if (AUTO_STOP) {
-                    console.debug($scope.ionGalleryItems);
-
-                    angular.forEach($scope.ionGalleryItems, function (media, key) {
+                    angular.forEach($scope.slides, function (media, key) {
                         if(media.uid != '') {
                             console.debug("ATTEMPTING TO STOP " + media.uid + " video");
                             callPlayer(media.uid, "stopVideo");
@@ -84,11 +70,8 @@
 
                 galleryLength = $scope.ionGalleryItems.length;
 
-                console.debug($scope.ionGalleryItems.length);
-
                 var previndex = index - 1 < 0 ? galleryLength - 1 : index - 1;
                 var nextindex = index + 1 >= galleryLength ? 0 : index + 1;
-
 
                 $scope.slides[0] = $scope.ionGalleryItems[previndex];
                 $scope.slides[1] = $scope.ionGalleryItems[index];

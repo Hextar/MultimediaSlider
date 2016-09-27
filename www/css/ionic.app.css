@@ -9816,6 +9816,13 @@ a.button {
     left: -9999px;
     right: -9999px;
     margin: auto; }
+  .gallery-view .image-container i {
+    position: absolute;
+    color: #fff;
+    font-size: 12vw;
+    top: calc(50% - (12vw / 2));
+    left: calc(50% - (12vw / 4));
+    pointer-events: none; }
 
 .imageView .has-no-header {
   top: 0px !important; }
