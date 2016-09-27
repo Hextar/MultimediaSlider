@@ -71,7 +71,7 @@
     angular
         .module('angular-multimediaslider')
         .service('ionGalleryHelper', ionGalleryHelper);
-
+//posa
     ionGalleryHelper.$inject = ['ionGalleryConfig', '$sce'];
 
     function ionGalleryHelper(ionGalleryConfig, $sce) {

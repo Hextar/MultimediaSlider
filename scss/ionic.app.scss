@@ -8,8 +8,7 @@
   width: 100% !important;
   border: 0 !important;
 }
-
-$icon-size: 12vw;
+$icon-size: 10vw;
 
 .gallery-view{
 
@@ -26,13 +25,12 @@ $icon-size: 12vw;
       right: -9999px;
       margin: auto;
     }
-    i{
+    i {
       position: absolute;
-      color: #fff;
       font-size: $icon-size;
-      top: calc(50% - (#{$icon-size} / 2));
-      left: calc(50% - (#{$icon-size} / 4));
-      pointer-events: none;
+      color: #fff;
+      top: calc(50% - #{$icon-size / 2});
+      left: calc(50% - #{$icon-size / 4});
     }
   }
 }
