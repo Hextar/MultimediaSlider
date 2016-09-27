@@ -5,56 +5,28 @@
     'use strict';
 
     angular
-        .module('angular-multimediaslider', ['templates'])
-        .directive('ionGallery', ionGallery);
+        .module('angular-multimediaslider')
+        .provider('ionGalleryConfig', ionGalleryConfig);
 
-    ionGallery.$inject = ['$ionicPlatform', 'ionGalleryHelper', 'ionGalleryConfig'];
+    ionGalleryConfig.$inject = [];
 
-    function ionGallery($ionicPlatform, ionGalleryHelper, ionGalleryConfig) {
-        return {
-            restrict: 'AE',
-            scope: {
-                ionGalleryItems: '=ionGalleryItems',
-                ionGalleryRowSize: '=?ionGalleryRow',
-                ionItemCallback: '&?ionItemCallback'
-            },
-            controller: controller,
-            link: link,
-            replace: true,
-            templateUrl: 'templates/gallery.html'
+    function ionGalleryConfig() {
+        this.config = {
+            action_label: 'Close',
+            toggle: true,
+            row_size: 3,
+            fixed_row_size: true
         };
 
-        function controller($scope) {
-            var _rowSize = parseInt($scope.ionGalleryRowSize);
+        this.$get = function () {
+            return this.config;
+        };
 
-            var _drawGallery = function () {
-                $scope.ionGalleryRowSize = ionGalleryHelper.getRowSize(_rowSize || ionGalleryConfig.row_size, $scope.ionGalleryItems.length);
-                $scope.actionLabel = ionGalleryConfig.action_label;
-                $scope.items = ionGalleryHelper.buildGallery($scope.ionGalleryItems, $scope.ionGalleryRowSize);
-                $scope.responsiveGrid = parseInt((1 / $scope.ionGalleryRowSize) * 100);
-            };
-
-            _drawGallery();
-
-            (function () {
-                $scope.$watch(function () {
-                    return $scope.ionGalleryItems.length;
-                }, function (newVal, oldVal) {
-                    if (newVal !== oldVal) {
-                        _drawGallery();
-                    }
-                });
-            }());
-
-        }
-
-        function link(scope, element, attrs) {
-
-            scope.customCallback = angular.isFunction(scope.ionItemCallback) && attrs.hasOwnProperty('ionItemCallback')
-
-            scope.ionSliderToggle = attrs.ionGalleryToggle === 'false' ? false : ionGalleryConfig.toggle;
-        }
+        this.setGalleryConfig = function (config) {
+            angular.extend(this.config, this.config, config);
+        };
     }
+
 })();
 
 
@@ -98,250 +70,84 @@
 
     angular
         .module('angular-multimediaslider')
-        .directive('ionSlider', ionSlider);
+        .service('ionGalleryHelper', ionGalleryHelper);
 
-    ionSlider.$inject = ['$ionicModal', 'ionGalleryHelper', '$ionicPlatform', '$timeout', '$ionicScrollDelegate'];
+    ionGalleryHelper.$inject = ['ionGalleryConfig', '$sce'];
 
-    // from YT.PlayerState
-    var stateNames = {
-        '-1': 'unstarted',
-        0: 'ended',
-        1: 'playing',
-        2: 'paused',
-        3: 'buffering',
-        5: 'queued'
-    };
+    function ionGalleryHelper(ionGalleryConfig, $sce) {
 
-    var eventPrefix = 'youtube.player.';
+        var YTB_VIDEO_PREPEND = "https://www.youtube.com/embed/";
+        var YTB_VIDEO_POSTPEND = "?enablejsapi=1&amp;rel=0&amp;showinfo=0&amp;wmode=transparent";
+        var UID_PREPEND = "youtube-embed-uid-";
+        var uidCounter = 1;
 
-    var AUTO_START= false;
-    var AUTO_STOP= true;
-    var AUTO_DESTROY= false;
+        this.getRowSize = function (size, length) {
+            var rowSize;
 
-    function ionSlider($ionicModal, ionGalleryHelper, $ionicPlatform, $timeout, $ionicScrollDelegate) {
+            if (isNaN(size) === true || size <= 0) {
+                rowSize = ionGalleryConfig.row_size;
+            }
+            else if (size > length && !ionGalleryConfig.fixed_row_size) {
+                rowSize = length;
+            }
+            else {
+                rowSize = size;
+            }
 
-        return {
-            restrict: 'EA',
-            controller: controller,
-            link: link
+            return rowSize;
+
         };
 
-        function controller($scope) {
+        this.buildGallery = function (items, rowSize) {
+            var _gallery = [];
+            var row = -1;
+            var col = 0;
 
-            var lastSlideIndex;
-            var currentImage;
-            var imageToLoad;
-            var galleryLength = 0;
+            for (var i = 0; i < items.length; i++) {
 
-            var zoomStart = false;
-
-
-            $scope.startVideo = function (index) {
-                if(AUTO_START) {
-                    var uid = $scope.ionGalleryItems[index].uid;
-                    if (uid != '') {
-                        console.debug("ATTEMPTING TO START " + uid + " video");
-                        callPlayer(uid, "playVideo");
-                    }
+                if (i % rowSize === 0) {
+                    row++;
+                    _gallery[row] = [];
+                    col = 0;
                 }
+
+                if (!items[i].hasOwnProperty('src')) {
+                    items[i].src = '';
+                }
+
+                if (!items[i].hasOwnProperty('video')) {
+                    items[i].video = '';
+                } else {
+                    var temp = YTB_VIDEO_PREPEND+items[i].video+YTB_VIDEO_POSTPEND;
+                    items[i].video = $sce.trustAsResourceUrl(temp);
+                }
+
+                if (!items[i].hasOwnProperty('uid') && items[i].video != '') {
+                    items[i].uid = UID_PREPEND+uidCounter++;
+                } else if (items[i].video != '') {
+                    items[i].uid = UID_PREPEND+items[i].uid;
+                } else {
+                    items[i].uid = '';
+                }
+
+                if (!items[i].hasOwnProperty('sub')) {
+                    items[i].sub = '';
+                }
+
+                if (!items[i].hasOwnProperty('thumb')) {
+                    items[i].thumb = items[i].src;
+                }
+
+                items[i].position = i;
+
+                _gallery[row][col] = items[i];
+                col++;
             }
 
-            $scope.stopVideo = function () {
-                if (AUTO_STOP) {
-                    console.debug($scope.ionGalleryItems);
-
-                    angular.forEach($scope.ionGalleryItems, function (media, key) {
-                        if(media.uid != '') {
-                            console.debug("ATTEMPTING TO STOP " + media.uid + " video");
-                            callPlayer(media.uid, "stopVideo");
-                        }
-                    });
-                }
-            }
-
-            $scope.destroyPlayers = function () {
-                if (AUTO_DESTROY) {
-                    angular.forEach($scope.slides, function (player, key) {
-                        if(player.uid != '') {
-                            callPlayer(player.uid, "destroy");
-                        }
-                    });
-                }
-            }
-
-            $scope.selectedSlide = 1;
-            $scope.hideAll = false;
-
-            $scope.showImage = function (index) {
-                $scope.slides = [];
-
-                currentImage = index;
-
-                galleryLength = $scope.ionGalleryItems.length;
-
-                console.debug($scope.ionGalleryItems.length);
-
-                var previndex = index - 1 < 0 ? galleryLength - 1 : index - 1;
-                var nextindex = index + 1 >= galleryLength ? 0 : index + 1;
-
-
-                $scope.slides[0] = $scope.ionGalleryItems[previndex];
-                $scope.slides[1] = $scope.ionGalleryItems[index];
-                $scope.slides[2] = $scope.ionGalleryItems[nextindex];
-
-                lastSlideIndex = 1;
-                imageToLoad = 1;
-                $scope.loadModal();
-
-                $scope.startVideo(index);
-            };
-
-            $scope.slideChanged = function (currentSlideIndex) {
-
-                if (currentSlideIndex === lastSlideIndex) {
-                    return;
-                }
-
-                var slideToLoad = $scope.slides.length - lastSlideIndex - currentSlideIndex;
-                var videoToLoad;
-                var slidePosition = lastSlideIndex + '>' + currentSlideIndex;
-
-                if (slidePosition === '0>1' || slidePosition === '1>2' || slidePosition === '2>0') {
-                    currentImage++;
-
-                    if (currentImage >= galleryLength) {
-                        currentImage = 0;
-                    }
-
-                    imageToLoad = currentImage + 1;
-
-                    if (imageToLoad >= galleryLength) {
-                        imageToLoad = 0;
-                    }
-                }
-                else if (slidePosition === '0>2' || slidePosition === '1>0' || slidePosition === '2>1') {
-                    currentImage--;
-
-                    if (currentImage < 0) {
-                        currentImage = galleryLength - 1;
-                    }
-
-                    imageToLoad = currentImage - 1;
-
-                    if (imageToLoad < 0) {
-                        imageToLoad = galleryLength - 1;
-                    }
-                }
-
-                //Clear zoom
-                $ionicScrollDelegate.$getByHandle('slide-' + slideToLoad).zoomTo(1);
-
-                $scope.slides[slideToLoad] = $scope.ionGalleryItems[imageToLoad];
-
-                videoToLoad = imageToLoad - 1 < 0 ? galleryLength - 1 : imageToLoad - 1;
-
-                $scope.stopVideo(videoToLoad);
-                $scope.startVideo(videoToLoad);
-
-                lastSlideIndex = currentSlideIndex;
-
-            };
-
-            $scope.$on('ZoomStarted', function (e) {
-                $timeout(function () {
-                    zoomStart = true;
-                    $scope.hideAll = true;
-                });
-
-            });
-
-            $scope.$on('TapEvent', function (e) {
-                $timeout(function () {
-                    _onTap();
-                });
-
-            });
-
-            $scope.$on('DoubleTapEvent', function (event, position) {
-                $timeout(function () {
-                    var index = imageToLoad % $scope.slides.length;
-                    //console.debug($scope.slides[index]);
-                    if($scope.slides[index].video == '') {
-                        _onDoubleTap(position);
-                    }
-                });
-
-            });
-
-            var _onTap = function _onTap() {
-
-                if (zoomStart === true) {
-                    $ionicScrollDelegate.$getByHandle('slide-' + lastSlideIndex).zoomTo(1, true);
-
-                    $timeout(function () {
-                        _isOriginalSize();
-                    }, 300);
-
-                    return;
-                }
-
-                if (($scope.hasOwnProperty('ionSliderToggle') && $scope.ionSliderToggle === false && $scope.hideAll === false) || zoomStart === true) {
-                    return;
-                }
-
-                $scope.hideAll = !$scope.hideAll;
-            };
-
-            var _onDoubleTap = function _onDoubleTap(position) {
-                if (zoomStart === false) {
-                    $ionicScrollDelegate.$getByHandle('slide-' + lastSlideIndex).zoomTo(3, true, position.x, position.y);
-                    zoomStart = true;
-                    $scope.hideAll = true;
-                }
-                else {
-                    _onTap();
-                }
-            };
-
-            function _isOriginalSize() {
-                zoomStart = false;
-                _onTap();
-            }
-
-        }
-
-        function link(scope, element, attrs) {
-            var _modal;
-
-            scope.loadModal = function () {
-                $ionicModal.fromTemplateUrl('templates/slider.html', {
-                    scope: scope,
-                    animation: 'fade-in'
-                }).then(function (modal) {
-                    _modal = modal;
-                    scope.openModal();
-                });
-            };
-
-            scope.openModal = function () {
-                _modal.show();
-            };
-
-            scope.closeModal = function () {
-                scope.stopVideo();
-                _modal.hide();
-            };
-
-            scope.$on('$destroy', function () {
-                try {
-                    scope.destroyPlayers();
-                    _modal.remove();
-                } catch (err) {
-                    console.log(err.message);
-                }
-            });
-        }
+            return _gallery;
+        };
     }
+
 })();
 
 
@@ -513,18 +319,6 @@
 
     ionSlider.$inject = ['$ionicModal', 'ionGalleryHelper', '$ionicPlatform', '$timeout', '$ionicScrollDelegate'];
 
-    // from YT.PlayerState
-    var stateNames = {
-        '-1': 'unstarted',
-        0: 'ended',
-        1: 'playing',
-        2: 'paused',
-        3: 'buffering',
-        5: 'queued'
-    };
-
-    var eventPrefix = 'youtube.player.';
-
     var AUTO_START= false;
     var AUTO_STOP= true;
     var AUTO_DESTROY= false;
@@ -559,9 +353,7 @@
 
             $scope.stopVideo = function () {
                 if (AUTO_STOP) {
-                    console.debug($scope.ionGalleryItems);
-
-                    angular.forEach($scope.ionGalleryItems, function (media, key) {
+                    angular.forEach($scope.slides, function (media, key) {
                         if(media.uid != '') {
                             console.debug("ATTEMPTING TO STOP " + media.uid + " video");
                             callPlayer(media.uid, "stopVideo");
@@ -590,11 +382,8 @@
 
                 galleryLength = $scope.ionGalleryItems.length;
 
-                console.debug($scope.ionGalleryItems.length);
-
                 var previndex = index - 1 < 0 ? galleryLength - 1 : index - 1;
                 var nextindex = index + 1 >= galleryLength ? 0 : index + 1;
-
 
                 $scope.slides[0] = $scope.ionGalleryItems[previndex];
                 $scope.slides[1] = $scope.ionGalleryItems[index];
@@ -754,7 +543,6 @@
         }
     }
 })();
-
 
 
 angular.module("templates", []).run(["$templateCache", function ($templateCache) {
