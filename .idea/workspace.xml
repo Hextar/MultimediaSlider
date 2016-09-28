@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="76cc70f5-f583-4985-8434-693454e62f0e" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scss/ionic.app.scss" afterPath="$PROJECT_DIR$/scss/ionic.app.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/slider.js" afterPath="$PROJECT_DIR$/www/js/slider.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/multimedia-slider.js" afterPath="$PROJECT_DIR$/dist/multimedia-slider.js" />
     </list>
     <ignored path="MultimediaSlider.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -36,12 +34,25 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="slider.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="slider.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/js/slider.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="329">
-              <caret line="220" column="17" selection-start-line="220" selection-start-column="16" selection-end-line="220" selection-end-column="17" />
+            <state relative-caret-position="0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="236" selection-end-column="5" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="multimedia-slider.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/dist/multimedia-slider.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="84">
+              <caret line="576" column="5" selection-start-line="576" selection-start-column="5" selection-end-line="576" selection-end-column="5" />
+              <folding>
+                <marker date="1475052527768" expanded="true" signature="18837:18857" ph="..." />
+                <marker date="1475052527768" expanded="true" signature="18933:18947" ph="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -89,10 +100,10 @@
         <option value="$PROJECT_DIR$/www/js/rowHeight.js" />
         <option value="$PROJECT_DIR$/www/index.html" />
         <option value="$PROJECT_DIR$/www/js/gallery.js" />
-        <option value="$PROJECT_DIR$/dist/multimedia-slider.js" />
         <option value="$PROJECT_DIR$/dist/ionic.app.min.css" />
         <option value="$PROJECT_DIR$/scss/ionic.app.scss" />
         <option value="$PROJECT_DIR$/www/js/slider.js" />
+        <option value="$PROJECT_DIR$/dist/multimedia-slider.js" />
       </list>
     </option>
   </component>
@@ -803,12 +814,12 @@
       <workItem from="1474874365916" duration="20918000" />
       <workItem from="1474961418773" duration="17108000" />
       <workItem from="1474986897928" duration="4112000" />
-      <workItem from="1475048354985" duration="1586000" />
+      <workItem from="1475048354985" duration="2465000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="105437000" />
+    <option name="totallyTimeSpent" value="106316000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="2009" y="33" width="1591" height="1017" extended-state="6" />
@@ -964,6 +975,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1475052527768" expanded="true" signature="18837:18857" ph="..." />
+            <marker date="1475052527768" expanded="true" signature="18933:18947" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1167,13 +1182,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dist/multimedia-slider.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-945">
-          <caret line="12" column="21" selection-start-line="12" selection-start-column="21" selection-end-line="12" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/www/css/ionic.app.min.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-45982">
@@ -1198,9 +1206,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/www/js/slider.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="329">
-          <caret line="220" column="17" selection-start-line="220" selection-start-column="16" selection-end-line="220" selection-end-column="17" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="236" selection-end-column="5" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dist/multimedia-slider.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="576" column="5" selection-start-line="576" selection-start-column="5" selection-end-line="576" selection-end-column="5" />
+          <folding>
+            <marker date="1475052527768" expanded="true" signature="18837:18857" ph="..." />
+            <marker date="1475052527768" expanded="true" signature="18933:18947" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>

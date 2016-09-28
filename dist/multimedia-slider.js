@@ -345,13 +345,13 @@
         .module('angular-multimediaslider')
         .directive('ionSlider', ionSlider);
 
-    ionSlider.$inject = ['$ionicModal', 'ionGalleryHelper', '$ionicPlatform', '$timeout', '$ionicScrollDelegate'];
+    ionSlider.$inject = ['$ionicModal', '$templateCache', 'ionGalleryHelper', '$ionicPlatform', '$timeout', '$ionicScrollDelegate'];
 
     var AUTO_START= false;
     var AUTO_STOP= true;
-    var AUTO_DESTROY= false;
+    var AUTO_DESTROY= true;
 
-    function ionSlider($ionicModal, ionGalleryHelper, $ionicPlatform, $timeout, $ionicScrollDelegate) {
+    function ionSlider($ionicModal, $templateCache, ionGalleryHelper, $ionicPlatform, $timeout, $ionicScrollDelegate) {
 
         return {
             restrict: 'EA',
@@ -392,9 +392,10 @@
 
             $scope.destroyPlayers = function () {
                 if (AUTO_DESTROY) {
-                    angular.forEach($scope.slides, function (player, key) {
-                        if(player.uid != '') {
-                            callPlayer(player.uid, "destroy");
+                    angular.forEach($scope.slides, function (media, key) {
+                        if(media.uid != '') {
+                            console.debug("ATTEMPTING TO DESTROY " + media.uid + " video");
+                            callPlayer(media.uid, "destroy");
                         }
                     });
                 }
@@ -556,8 +557,11 @@
             };
 
             scope.closeModal = function () {
-                scope.stopVideo();
                 _modal.hide();
+                _modal.remove();
+
+                scope.stopVideo();
+                //scope.destroyPlayers();
             };
 
             scope.$on('$destroy', function () {
