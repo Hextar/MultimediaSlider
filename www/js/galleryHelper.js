@@ -10,7 +10,7 @@
     function ionGalleryHelper(ionGalleryConfig, $sce) {
 
         var YTB_VIDEO_PREPEND = "https://www.youtube.com/embed/";
-        var YTB_VIDEO_POSTPEND = "?enablejsapi=1&amp;rel=0&amp;showinfo=0&amp;wmode=transparent";
+        var YTB_VIDEO_POSTPEND = "?enablejsapi=1&amp;rel=0&amp;showinfo=0&amp;controls=0";
         var UID_PREPEND = "youtube-embed-uid-";
         var uidCounter = 1;
 
@@ -53,6 +53,10 @@
                 } else {
                     var temp = YTB_VIDEO_PREPEND+items[i].video+YTB_VIDEO_POSTPEND;
                     items[i].video = $sce.trustAsResourceUrl(temp);
+                }
+
+                if (!items[i].hasOwnProperty('playing') && items[i].video != '') {
+                    items[i].playing = false;
                 }
 
                 if (!items[i].hasOwnProperty('uid') && items[i].video != '') {

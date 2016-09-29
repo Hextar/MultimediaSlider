@@ -19,8 +19,8 @@
                 >
                     <div class="item item-image gallery-slide-view">
                         <img ng-src="{{single.src}}" ng-show="single.src!=''">
-                        <div  class="embed-responsive embed-responsive-16by9" ng-if="single.video!=''">
-                            <iframe id="{{single.uid}}" src={{single.video}} class="embed-responsive-item" frameborder="0" allowfullscreen wmode="Opaque"></iframe>
+                        <div class="embed-responsive embed-responsive-16by9" ng-if="single.video!=''">
+                            <iframe style="z-index:-1;" id="{{single.uid}}" src={{single.video}} class="embed-responsive-item" frameborder="0" allowfullscreen></iframe>
                         </div>
                     </div>
                     <div ng-if="single.sub.length > 0" style="width: 100%; left: 0" class="text-center image-subtitle"

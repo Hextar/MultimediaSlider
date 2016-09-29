@@ -23,7 +23,6 @@
             };
 
             var imageDoubleTapGesture = function imageDoubleTapGesture(event) {
-
                 isDoubleTapAction = true;
 
                 $timeout(function () {
@@ -46,7 +45,10 @@
                             return;
                         }
                         else {
-                            scope.$emit('TapEvent');
+                            scope.$emit('TapEvent', {
+                                'x': event.gesture.touches[0].pageX,
+                                'y': event.gesture.touches[0].pageY
+                            });
                         }
                     }, 200);
                 }

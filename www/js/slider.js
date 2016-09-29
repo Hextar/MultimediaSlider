@@ -7,9 +7,9 @@
 
     ionSlider.$inject = ['$ionicModal', '$templateCache', 'ionGalleryHelper', '$ionicPlatform', '$timeout', '$ionicScrollDelegate'];
 
-    var AUTO_START= false;
-    var AUTO_STOP= true;
-    var AUTO_DESTROY= true;
+    var AUTO_START = false;
+    var AUTO_STOP = true;
+    var AUTO_DESTROY = true;
 
     function ionSlider($ionicModal, $templateCache, ionGalleryHelper, $ionicPlatform, $timeout, $ionicScrollDelegate) {
 
@@ -19,31 +19,47 @@
             link: link
         };
 
-        function controller($scope) {
+        function controller($scope, $document) {
 
             var lastSlideIndex;
             var currentImage;
             var imageToLoad;
+            var videoToLoad;
             var galleryLength = 0;
 
             var zoomStart = false;
 
-
             $scope.startVideo = function (index) {
-                if(AUTO_START) {
+                if (AUTO_START) {
                     var uid = $scope.ionGalleryItems[index].uid;
                     if (uid != '') {
-                        console.debug("ATTEMPTING TO START " + uid + " video");
+                        //console.debug("ATTEMPTING TO START " + uid + " video");
                         callPlayer(uid, "playVideo");
+                        $scope.slides[index].playing = true;
+
                     }
+                }
+            }
+
+
+            $scope.pauseVideo = function () {
+                if (AUTO_STOP) {
+                    angular.forEach($scope.slides, function (media, key) {
+                        if (media.uid != '') {
+                            //console.debug("ATTEMPTING TO PAUSE " + media.uid + " video");
+                            media.playing = false;
+                            callPlayer(media.uid, "pauseVideo");
+                        }
+                    });
                 }
             }
 
             $scope.stopVideo = function () {
                 if (AUTO_STOP) {
                     angular.forEach($scope.slides, function (media, key) {
-                        if(media.uid != '') {
-                            console.debug("ATTEMPTING TO STOP " + media.uid + " video");
+                        if (media.uid != '') {
+                            //console.debug("ATTEMPTING TO STOP " + media.uid + " video");
+                            media.playing = false;
                             callPlayer(media.uid, "stopVideo");
                         }
                     });
@@ -53,7 +69,7 @@
             $scope.destroyPlayers = function () {
                 if (AUTO_DESTROY) {
                     angular.forEach($scope.slides, function (media, key) {
-                        if(media.uid != '') {
+                        if (media.uid != '') {
                             console.debug("ATTEMPTING TO DESTROY " + media.uid + " video");
                             callPlayer(media.uid, "destroy");
                         }
@@ -63,6 +79,7 @@
 
             $scope.selectedSlide = 1;
             $scope.hideAll = false;
+
 
             $scope.showImage = function (index) {
                 $scope.slides = [];
@@ -80,9 +97,10 @@
 
                 lastSlideIndex = 1;
                 imageToLoad = 1;
+                videoToLoad = index;
                 $scope.loadModal();
 
-                $scope.startVideo(index);
+                //$scope.startVideo(index);
             };
 
             $scope.slideChanged = function (currentSlideIndex) {
@@ -92,7 +110,6 @@
                 }
 
                 var slideToLoad = $scope.slides.length - lastSlideIndex - currentSlideIndex;
-                var videoToLoad;
                 var slidePosition = lastSlideIndex + '>' + currentSlideIndex;
 
                 if (slidePosition === '0>1' || slidePosition === '1>2' || slidePosition === '2>0') {
@@ -107,6 +124,8 @@
                     if (imageToLoad >= galleryLength) {
                         imageToLoad = 0;
                     }
+
+                    videoToLoad = imageToLoad - 1 < 0 ? galleryLength - 1 : imageToLoad - 1;
                 }
                 else if (slidePosition === '0>2' || slidePosition === '1>0' || slidePosition === '2>1') {
                     currentImage--;
@@ -120,6 +139,7 @@
                     if (imageToLoad < 0) {
                         imageToLoad = galleryLength - 1;
                     }
+                    videoToLoad = imageToLoad + 1 >= galleryLength ? 0 : imageToLoad + 1;
                 }
 
                 //Clear zoom
@@ -127,13 +147,11 @@
 
                 $scope.slides[slideToLoad] = $scope.ionGalleryItems[imageToLoad];
 
-                videoToLoad = imageToLoad - 1 < 0 ? galleryLength - 1 : imageToLoad - 1;
 
                 $scope.stopVideo(videoToLoad);
                 $scope.startVideo(videoToLoad);
 
                 lastSlideIndex = currentSlideIndex;
-
             };
 
             $scope.$on('ZoomStarted', function (e) {
@@ -144,9 +162,14 @@
 
             });
 
-            $scope.$on('TapEvent', function (e) {
+            $scope.$on('TapEvent', function (event, position) {
+                console.debug(videoToLoad)
                 $timeout(function () {
-                    _onTap();
+                    if ($scope.ionGalleryItems[videoToLoad].video == '') {
+                        _onTap(position);
+                    } else {
+                        _onVideoTap(videoToLoad);
+                    }
                 });
 
             });
@@ -154,15 +177,14 @@
             $scope.$on('DoubleTapEvent', function (event, position) {
                 $timeout(function () {
                     var index = imageToLoad % $scope.slides.length;
-                    //console.debug($scope.slides[index]);
-                    if($scope.slides[index].video == '') {
+                    if ($scope.slides[index].video == '') {
                         _onDoubleTap(position);
                     }
                 });
 
             });
 
-            var _onTap = function _onTap() {
+            var _onTap = function _onTap(position) {
 
                 if (zoomStart === true) {
                     $ionicScrollDelegate.$getByHandle('slide-' + lastSlideIndex).zoomTo(1, true);
@@ -179,6 +201,16 @@
                 }
 
                 $scope.hideAll = !$scope.hideAll;
+            };
+
+            var _onVideoTap = function _onVideoTap(index) {
+                var uid = $scope.ionGalleryItems[index].uid;
+                if($scope.ionGalleryItems[index].playing) {
+                    callPlayer(uid, 'pauseVideo');
+                } else {
+                    callPlayer(uid, 'playVideo');
+                }
+                $scope.ionGalleryItems[index].playing = !$scope.ionGalleryItems[index].playing;
             };
 
             var _onDoubleTap = function _onDoubleTap(position) {
@@ -219,9 +251,7 @@
             scope.closeModal = function () {
                 _modal.hide();
                 _modal.remove();
-
                 scope.stopVideo();
-                //scope.destroyPlayers();
             };
 
             scope.$on('$destroy', function () {

@@ -1,6 +1,6 @@
 // Ionic Starter App
 
-angular.module('angular-multimediaslider', ['ionic', 'ngResource', 'ngCordova'  ])
+angular.module('angular-multimediaslider', ['ionic', 'ngResource', 'ngCordova', 'ngTouch'  ])
 
     .run(function ($ionicPlatform) {
         $ionicPlatform.ready(function () {
