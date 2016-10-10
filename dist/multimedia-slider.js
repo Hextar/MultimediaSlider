@@ -106,7 +106,12 @@
 
         var YTB_VIDEO_PREPEND = "https://www.youtube.com/embed/";
         var YTB_VIDEO_POSTPEND = "?enablejsapi=1&amp;rel=0&amp;showinfo=0&amp;controls=0";
+        var YTB_VIDEO_THUMB_PREPEND = "http://img.youtube.com/vi/";
+        var YTB_VIDEO_THUMB_POSTPEND = "/0.jpg";
         var UID_PREPEND = "youtube-embed-uid-";
+        var TYPE_IMAGE = "image";
+        var TYPE_VIDEO = "video";
+        var TYPE_NULL = "NOT_SET";
         var uidCounter = 1;
 
         this.getRowSize = function (size, length) {
@@ -139,35 +144,41 @@
                     col = 0;
                 }
 
-                if (!items[i].hasOwnProperty('src')) {
-                    items[i].src = '';
-                }
+                // url dell'immagine
+                if ((!items[i].hasOwnProperty('type')) || (!items[i].hasOwnProperty('mediaURI'))) {
+                    items[i].src = TYPE_NULL;
+                } else if(items[i].type == TYPE_IMAGE) {
 
-                if (!items[i].hasOwnProperty('video')) {
-                    items[i].video = '';
-                } else {
-                    var temp = YTB_VIDEO_PREPEND+items[i].video+YTB_VIDEO_POSTPEND;
+                    items[i].src = items[i].mediaURI;
+
+                    // immagine per la gallery
+                    if (!items[i].hasOwnProperty('thumb')) {
+                        items[i].thumb = items[i].src;
+                    }
+
+                } else if(items[i].type == TYPE_VIDEO) {
+
+                    var temp = YTB_VIDEO_PREPEND+items[i].mediaURI+YTB_VIDEO_POSTPEND;
                     items[i].video = $sce.trustAsResourceUrl(temp);
+
+                    // proprietà video playing = Boolean
+                    if (!items[i].hasOwnProperty('playing') && items[i].video != '') {
+                        items[i].playing = false;
+                    }
+                    // proprietà video id dell'iframe
+                    if (!items[i].hasOwnProperty('uid') && items[i].video != '') {
+                        items[i].uid = UID_PREPEND + uidCounter++;
+                    }
+
+                    if (!items[i].hasOwnProperty('thumb') && items[i].video != '') {
+                        items[i].thumb = YTB_VIDEO_THUMB_PREPEND + items[i].mediaURI + YTB_VIDEO_THUMB_POSTPEND;
+                    }
+
                 }
 
-                if (!items[i].hasOwnProperty('playing') && items[i].video != '') {
-                    items[i].playing = false;
-                }
-
-                if (!items[i].hasOwnProperty('uid') && items[i].video != '') {
-                    items[i].uid = UID_PREPEND+uidCounter++;
-                } else if (items[i].video != '') {
-                    items[i].uid = UID_PREPEND+items[i].uid;
-                } else {
-                    items[i].uid = '';
-                }
-
-                if (!items[i].hasOwnProperty('sub')) {
-                    items[i].sub = '';
-                }
-
-                if (!items[i].hasOwnProperty('thumb')) {
-                    items[i].thumb = items[i].src;
+                // sottotitolo dell'elemento multimediale
+                if (!items[i].hasOwnProperty('name')) {
+                    items[i].name = '';
                 }
 
                 items[i].position = i;
@@ -614,8 +625,8 @@
 
 
 angular.module("templates", []).run(["$templateCache", function ($templateCache) {
-    $templateCache.put("templates/gallery.html", "<div class=\"gallery-view\"> <div class=\"row\" ng-repeat=\"item in items track by $index\" ion-row-height> <div ng-repeat=\"photo in item track by $index\" class=\"col col-{{responsiveGrid}} image-container\"> <img ion-image-scale ng-src=\"{{photo.thumb}}\" ng-click=\"customCallback ? ionItemCallback({item:photo}) : showImage(photo.position)\"> <i class=\"icon ion-play\" ng-if=\"photo.video!=''\"></i> </div></div><div ion-slider></div></div>");
-    $templateCache.put("templates/slider.html", "<ion-modal-view class=\"imageView\"> <ion-header-bar class=\"headerView\" ng-show=\"!hideAll\"> <button class=\"button button-outline button-light close-btn\" ng-click=\"closeModal()\">{{::actionLabel}}</button> </ion-header-bar> <ion-content class=\"has-no-header\" scroll=\"false\"> <ion-slide-box does-continue=\"true\" active-slide=\"selectedSlide\" show-pager=\"false\" class=\"listContainer\" on-slide-changed=\"slideChanged($index)\"> <ion-slide ng-repeat=\"single in slides track by $index\"> <ion-scroll direction=\"x\" locking=\"false\" zooming=\"true\" min-zoom=\"1\" scrollbar-x=\"false\" scrollbar-y=\"false\" ion-slide-action delegate-handle=\"slide-{{$index}}\" overflow-scroll=\"false\" > <div class=\"item item-image gallery-slide-view\"> <img ng-src=\"{{single.src}}\" ng-show=\"single.src!=''\"> <div class=\"embed-responsive embed-responsive-16by9\" ng-if=\"single.video!=''\"> <iframe id=\"{{single.uid}}\" style=\"z-index: -1;\" class=\"embed-responsive-item\" src={{single.video}} frameborder=\"0\" allowfullscreen></iframe> </div></div><div ng-if=\"single.sub.length > 0\" style=\"width: 100%; left: 0\" class=\"text-center image-subtitle\" ng-show=\"!hideAll\"> <span style=\"margin: 0 auto\" ng-bind-html='single.sub'></span> </div></ion-scroll> </ion-slide> </ion-slide-box> </ion-content></ion-modal-view>");
+    $templateCache.put("templates/gallery.html", "<div class='gallery-view'> <div class='row' ng-repeat='item in items track by $index' ion-row-height> <div ng-repeat='photo in item track by $index' class='col col-{{responsiveGrid}}image-container'> <img ion-image-scale ng-src='{{photo.thumb}}' ng-click='customCallback ? ionItemCallback({item:photo}) : showImage(photo.position)'> <i class='icon ion-play' ng-if='photo.type=='video''></i> </div></div><div ion-slider></div></div>");
+    $templateCache.put("templates/slider.html", "<ion-modal-view class='imageView'> <ion-header-bar class='headerView' ng-show='!hideAll'> <button class='button button-outline button-light close-btn' ng-click='closeModal()'>{{::actionLabel}}</button> </ion-header-bar> <ion-content class='has-no-header' scroll='false' overflow-scroll='true'> <ion-slide-box does-continue='true' active-slide='selectedSlide' show-pager='false' class='listContainer' on-slide-changed='slideChanged($index)'> <ion-slide ng-repeat='single in slides track by $index'> <ion-scroll direction='x' locking='true' zooming='true' min-zoom='1' scrollbar-x='false' scrollbar-y='false' ion-slide-action delegate-handle='slide-{{$index}}' overflow-scroll='false' > <div class='item item-image gallery-slide-view'> <img ng-src='{{single.src}}' ng-show='single.type=='image''> <div class='embed-responsive embed-responsive-16by9' ng-show='single.type=='video''> <iframe style='z-index:-1;' id='{{single.uid}}' src={{single.video}}class='embed-responsive-item' frameborder='0' allowfullscreen></iframe> </div></div><div ng-if='single.name.length > 0' style='width: 100%; left: 0' class='text-center image-subtitle' ng-show='!hideAll'> <span style='margin: 0 auto' ng-bind-html='single.name'></span> </div></ion-scroll> </ion-slide> </ion-slide-box> </ion-content></ion-modal-view>");
 }]);
 
 
