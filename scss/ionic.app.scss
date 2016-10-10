@@ -32,6 +32,7 @@ $icon-size: 10vw;
       top: calc(50% - #{$icon-size / 2});
       left: calc(50% - #{$icon-size / 4});
       pointer-events: none;
+      text-shadow: 2px 2px 5px #000;
     }
   }
 }

@@ -1,10 +1,10 @@
 angular.module('angular-multimediaslider')
 
     .factory('DetailsService', function ($resource) {
-        var Detail = $resource("http://localhost:3000/details/:detailId", {detailId:'@id'});
+        var Detail = $resource("http://localhost:8090/ilikesantelia/api/rest/activity/1");
         return {
-            getById(id) {
-                return Detail.get({detailId: id});
+            getById() {
+                return Detail.get();
             }
         }
     });

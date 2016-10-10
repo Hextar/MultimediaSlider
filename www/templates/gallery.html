@@ -6,7 +6,7 @@
             <img ion-image-scale
                  ng-src="{{photo.thumb}}"
                  ng-click="customCallback ? ionItemCallback({item:photo}) : showImage(photo.position)">
-            <i class="icon ion-play" ng-if="photo.video!=''"></i>
+            <i class="icon ion-play" ng-if="photo.type=='video'"></i>
         </div>
     </div>
     <div ion-slider></div>

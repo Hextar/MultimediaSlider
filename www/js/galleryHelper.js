@@ -11,7 +11,12 @@
 
         var YTB_VIDEO_PREPEND = "https://www.youtube.com/embed/";
         var YTB_VIDEO_POSTPEND = "?enablejsapi=1&amp;rel=0&amp;showinfo=0&amp;controls=0";
+        var YTB_VIDEO_THUMB_PREPEND = "http://img.youtube.com/vi/";
+        var YTB_VIDEO_THUMB_POSTPEND = "/0.jpg";
         var UID_PREPEND = "youtube-embed-uid-";
+        var TYPE_IMAGE = "image";
+        var TYPE_VIDEO = "video";
+        var TYPE_NULL = "NOT_SET";
         var uidCounter = 1;
 
         this.getRowSize = function (size, length) {
@@ -44,35 +49,41 @@
                     col = 0;
                 }
 
-                if (!items[i].hasOwnProperty('src')) {
-                    items[i].src = '';
-                }
+                // url dell'immagine
+                if ((!items[i].hasOwnProperty('type')) || (!items[i].hasOwnProperty('mediaURI'))) {
+                    items[i].src = TYPE_NULL;
+                } else if(items[i].type == TYPE_IMAGE) {
 
-                if (!items[i].hasOwnProperty('video')) {
-                    items[i].video = '';
-                } else {
-                    var temp = YTB_VIDEO_PREPEND+items[i].video+YTB_VIDEO_POSTPEND;
+                    items[i].src = items[i].mediaURI;
+
+                    // immagine per la gallery
+                    if (!items[i].hasOwnProperty('thumb')) {
+                        items[i].thumb = items[i].src;
+                    }
+
+                } else if(items[i].type == TYPE_VIDEO) {
+
+                    var temp = YTB_VIDEO_PREPEND+items[i].mediaURI+YTB_VIDEO_POSTPEND;
                     items[i].video = $sce.trustAsResourceUrl(temp);
+
+                    // proprietà video playing = Boolean
+                    if (!items[i].hasOwnProperty('playing') && items[i].video != '') {
+                        items[i].playing = false;
+                    }
+                    // proprietà video id dell'iframe
+                    if (!items[i].hasOwnProperty('uid') && items[i].video != '') {
+                        items[i].uid = UID_PREPEND + uidCounter++;
+                    }
+
+                    if (!items[i].hasOwnProperty('thumb') && items[i].video != '') {
+                        items[i].thumb = YTB_VIDEO_THUMB_PREPEND + items[i].mediaURI + YTB_VIDEO_THUMB_POSTPEND;
+                    }
+
                 }
 
-                if (!items[i].hasOwnProperty('playing') && items[i].video != '') {
-                    items[i].playing = false;
-                }
-
-                if (!items[i].hasOwnProperty('uid') && items[i].video != '') {
-                    items[i].uid = UID_PREPEND+uidCounter++;
-                } else if (items[i].video != '') {
-                    items[i].uid = UID_PREPEND+items[i].uid;
-                } else {
-                    items[i].uid = '';
-                }
-
-                if (!items[i].hasOwnProperty('sub')) {
-                    items[i].sub = '';
-                }
-
-                if (!items[i].hasOwnProperty('thumb')) {
-                    items[i].thumb = items[i].src;
+                // sottotitolo dell'elemento multimediale
+                if (!items[i].hasOwnProperty('name')) {
+                    items[i].name = '';
                 }
 
                 items[i].position = i;
