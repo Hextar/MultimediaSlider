@@ -72,7 +72,7 @@
 
     function ionGalleryConfig() {
         this.config = {
-            action_label: 'Close',
+            action_label: 'Chiudi',
             toggle: true,
             row_size: 3,
             fixed_row_size: true
@@ -192,6 +192,7 @@
     }
 
 })();
+
 
 
 /*** ************* ***/
@@ -622,6 +623,7 @@
         }
     }
 })();
+
 
 
 angular.module("templates", []).run(["$templateCache", function ($templateCache) {
