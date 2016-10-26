@@ -1,7 +1,7 @@
 {
   "name": "angular-multimediaslider",
   "description": "A fused version of ion-galery & angular-youtube-mb",
-  "version": "0.1.0",
+  "version": "1.0",
   "homepage": "https://github.com/Hextar/MultimediaSlider",
   "_source": "https://github.com/Hextar/MultimediaSlider.git",
   "keywords": [

@@ -7,7 +7,6 @@
 
     ionGallery.$inject = ['$ionicPlatform', 'ionGalleryHelper', 'ionGalleryConfig'];
 
-    ///lelelel
     function ionGallery($ionicPlatform, ionGalleryHelper, ionGalleryConfig) {
         return {
             restrict: 'AE',
